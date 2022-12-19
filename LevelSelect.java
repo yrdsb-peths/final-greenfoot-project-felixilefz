@@ -29,7 +29,6 @@ public class LevelSelect extends World
         int y = 100; // same thing as above
         int spacing = (600 - BUTTON_PADDING * 2) / (BUTTONS_PER_ROW-1);
         int totalRows = LEVEL_COUNT / BUTTONS_PER_ROW;
-        System.out.println(totalRows);
         
         for (int i = 0; i < totalRows; i++) {
             for (int j = 0; j < BUTTONS_PER_ROW; j++) {
@@ -41,6 +40,7 @@ public class LevelSelect extends World
             x = BUTTON_PADDING;
         }
         
+        // Checks if there's remaining buttons and adds it to the world
         if (LEVEL_COUNT % BUTTONS_PER_ROW != 0) {
             for (int i = 0; i < LEVEL_COUNT % BUTTONS_PER_ROW; i++) {
                 Button button = new Button(new GameWorld(), BUTTON_SCALE, BUTTON_SCALE, new GreenfootImage("images/buttons/level_button" + (totalRows * BUTTONS_PER_ROW + i + 1)  + ".png"));

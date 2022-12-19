@@ -8,12 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
+    
+    public Player(int x, int y) {
+        GreenfootImage image = getImage();
+        image.scale(50, 50);
+        setImage(image);
+    }
+    
     public void act()
     {
         // Add your action code here.
+        GameWorld world = (GameWorld) getWorld();
+        
     }
 }
