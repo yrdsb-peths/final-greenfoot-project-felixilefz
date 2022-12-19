@@ -14,20 +14,39 @@ public class LevelSelect extends World
      * 
      */
     
-    private static final int LEVEL_COUNT = 4;
-    private static final int SCALE = 75;
+    private static final int LEVEL_COUNT = 6;
+    private static final int BUTTON_SCALE = 50;
+    private static final int BUTTONS_PER_ROW = 3;
+    private static final int BUTTON_PADDING = 100;
+    
+    
     
     public LevelSelect()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        int x = 100; // Starting number is the distance between edge and the button on a new row
+        int x = BUTTON_PADDING; // Starting number is the distance between edge and the button on a new row
         int y = 100; // same thing as above
+        int spacing = (600 - BUTTON_PADDING * 2) / (BUTTONS_PER_ROW-1);
+        int totalRows = LEVEL_COUNT / BUTTONS_PER_ROW;
+        System.out.println(totalRows);
         
-        for (int i = 1; i <= LEVEL_COUNT; i++) {
-            Button button = new Button(new GameWorld(), SCALE, SCALE, new GreenfootImage("images/buttons/level_button" + i + ".png"));
-            addObject(button, x, y);
-            x += SCALE + 50;
+        for (int i = 0; i < totalRows; i++) {
+            for (int j = 0; j < BUTTONS_PER_ROW; j++) {
+                Button button = new Button(new GameWorld(), BUTTON_SCALE, BUTTON_SCALE, new GreenfootImage("images/buttons/level_button" + (i * BUTTONS_PER_ROW + j + 1)  + ".png"));
+                addObject(button, x, y);
+                x += spacing;
+            }
+            y += 100;
+            x = BUTTON_PADDING;
+        }
+        
+        if (LEVEL_COUNT % BUTTONS_PER_ROW != 0) {
+            for (int i = 0; i < LEVEL_COUNT % BUTTONS_PER_ROW; i++) {
+                Button button = new Button(new GameWorld(), BUTTON_SCALE, BUTTON_SCALE, new GreenfootImage("images/buttons/level_button" + (totalRows * BUTTONS_PER_ROW + i + 1)  + ".png"));
+                addObject(button, x, y);
+                x += spacing;
+            }
         }
     }
 }
