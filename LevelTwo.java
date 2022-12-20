@@ -10,12 +10,15 @@ import java.lang.Math.*;
 public class LevelTwo extends GameWorld
 {
     // The dimensions of the level. It includes the outer walls
-    private static final int WIDTH = 7; 
-    private static final int HEIGHT = 7;
+    private static final int WIDTH = 10; 
+    private static final int HEIGHT = 15;
+    private static final int SPAWN_LOCATION_X = 1;
+    private static final int SPAWN_LOCATION_Y = 1;
+    
     
     public LevelTwo()
     {
-        super(WIDTH, HEIGHT);
+        super(WIDTH, HEIGHT, SPAWN_LOCATION_X, SPAWN_LOCATION_X);
         
         
         

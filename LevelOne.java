@@ -17,7 +17,7 @@ public class LevelOne extends GameWorld
     
     public LevelOne()
     {
-        super(WIDTH, HEIGHT);
+        super(WIDTH, HEIGHT, SPAWN_LOCATION_X, SPAWN_LOCATION_X);
         
         
         
