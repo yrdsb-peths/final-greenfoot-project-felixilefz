@@ -10,9 +10,9 @@ public class Player extends Actor
 {
     
     
-    public Player(int x, int y) {
+    public Player(int x, int y, int scale) {
         GreenfootImage image = getImage();
-        image.scale(50, 50);
+        image.scale(scale, scale);
         setImage(image);
     }
     

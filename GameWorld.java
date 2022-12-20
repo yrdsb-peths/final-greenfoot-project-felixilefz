@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.lang.Math.*;
 /**
  * Write a description of class GameWorld here.
  * 
@@ -8,15 +8,57 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameWorld extends World
 {
-
+    private int scale;
     
-    public GameWorld()
+    
+    public GameWorld(int width, int height)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        Player player = new Player(100, 100);
-        addObject(player, 100, 100);
+        
+        scale = Math.min(600 / (width+2), 400 / (height + 2)); // The plus 2 because of the outer walls
+        
+        createBase(width, height);
         
         
     }
+    
+    public void createBase(int width, int height) {
+        // Creates the outer walls and places basic floor tiles
+        String path = "images/tiles";
+        int x = scale/2;
+        int y = scale/2;
+        addObject(new Block(new GreenfootImage(path + "/walls/wall_top_left_corner.png"), scale), x, y);
+        x += scale;
+        
+        for (int i = 0; i < width; i++) {
+            addObject(new Block(new GreenfootImage(path + "/walls/wall_horizontal.png"), scale), x, y);
+            x += scale;
+        }
+        
+        addObject(new Block(new GreenfootImage(path + "/walls/wall_top_right_corner.png"), scale), x, y);
+        y += scale;
+        x = scale/2;
+        for (int i = 0; i < height; i++) {
+            
+            addObject(new Block(new GreenfootImage(path + "/walls/wall_vertical.png"), scale), x, y);
+            x += scale;
+            for (int j = 0; j < width; j++) {
+                addObject(new Block(new GreenfootImage(path + "/floors/tile_basic.png"), scale), x, y);
+                x += scale;
+            }
+            addObject(new Block(new GreenfootImage(path + "/walls/wall_vertical.png"), scale), x, y);
+            x = scale/2;
+            y += scale;
+        }
+        
+    }
+        
+    
+    
+    
+    public int getScale() {
+        return scale;
+    }
+    
 }
