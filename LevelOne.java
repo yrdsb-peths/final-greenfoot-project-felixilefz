@@ -10,8 +10,8 @@ import java.lang.Math.*;
 public class LevelOne extends GameWorld
 {
     // The dimensions of the level. Not including outer walls
-    private static final int WIDTH = 5; 
-    private static final int HEIGHT = 5;
+    private static final int WIDTH = 3; 
+    private static final int HEIGHT = 3;
     private static final int SPAWN_LOCATION_X = 1;
     private static final int SPAWN_LOCATION_Y = 1;
     

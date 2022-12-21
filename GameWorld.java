@@ -22,7 +22,7 @@ public class GameWorld extends World
         
         createBase();
         
-        // addObject(new Player(scale, spawnX, spawnY), spawnX*scale+scale/2, spawnY*scale+scale/2);
+        addObject(new Player(scale, spawnX, spawnY), spawnX*scale+scale/2, spawnY*scale+scale/2);
     }
     
     public void createBase() {
@@ -35,7 +35,6 @@ public class GameWorld extends World
         x += scale;
         
         for (int i = 0; i < width; i++) {
-            System.out.println(scale + " " + x);
             addObject(new Wall(new GreenfootImage(path + "/walls/wall_horizontal.png"), scale), x, y);
             x += scale;
         }
@@ -70,11 +69,11 @@ public class GameWorld extends World
     }
         
     
-    public int getWidth() {
+    public int getBlocksWidth() {
         return width;
     }
     
-    public int getHeight() {
+    public int getBlocksHeight() {
         return height;
     }
     

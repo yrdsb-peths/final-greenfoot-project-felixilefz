@@ -27,23 +27,23 @@ public class Player extends Actor
         // Add your action code here.
         
         GameWorld world = (GameWorld) getWorld();
-        if (controlTimer.millisElapsed() > 200) {
-            if (Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("a") && validSpot(x+1, y)) {
+        if (controlTimer.millisElapsed() > 250) {
+            if (Greenfoot.isKeyDown("d") && validSpot(x+1, y)) {
                 x ++;
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("d")) {
+            if (Greenfoot.isKeyDown("a") && validSpot(x-1, y)) {
                 x --;
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("w")) {
+            if (Greenfoot.isKeyDown("w") && validSpot(x, y-1)) {
                 y --;
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("s")) {
+            if (Greenfoot.isKeyDown("s") && validSpot(x, y+1)) {
                 y ++;
                 controlTimer.mark();
             }
@@ -54,7 +54,8 @@ public class Player extends Actor
     
     public boolean validSpot(int newX, int newY) {
         GameWorld world = (GameWorld) getWorld();
-        if (x <= 0 || x >= world.getWidth() || y <= 0 || y >= world.getHeight()) {
+        
+        if (newX <= 0 || newX > world.getBlocksWidth() || newY <= 0 || newY > world.getBlocksHeight()) {
             return false;
         }
         
