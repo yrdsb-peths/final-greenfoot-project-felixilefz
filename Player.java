@@ -1,19 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
 /**
  * Write a description of class Player here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Player extends Actor
+public class Player extends TileObject
 {
-    private int scale;
-    private SimpleTimer controlTimer = new SimpleTimer();
-    private int x;
-    private int y;
+    int scale;
+    SimpleTimer controlTimer = new SimpleTimer();
     
     public Player(int scale, int x, int y) {
+        super(new GreenfootImage("images/player.png"), scale, x , y);
         this.scale = scale;
         this.x = x;
         this.y = y;
@@ -28,38 +27,47 @@ public class Player extends Actor
         
         GameWorld world = (GameWorld) getWorld();
         if (controlTimer.millisElapsed() > 250) {
-            if (Greenfoot.isKeyDown("d") && validSpot(x+1, y)) {
+            if (Greenfoot.isKeyDown("d") && checkSpot(scale, 0)) {
                 x ++;
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("a") && validSpot(x-1, y)) {
+            if (Greenfoot.isKeyDown("a") && checkSpot(-scale, 0)) {
                 x --;
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("w") && validSpot(x, y-1)) {
+            if (Greenfoot.isKeyDown("w") && checkSpot(0, -scale)) {
                 y --;
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("s") && validSpot(x, y+1)) {
+            if (Greenfoot.isKeyDown("s") && checkSpot(0, scale)) {
                 y ++;
                 controlTimer.mark();
             }
         }
-        setLocation(x*scale+scale/2, y*scale+scale/2);
+        super.act();
         
     }
     
-    public boolean validSpot(int newX, int newY) {
+    // Checks the spot of the spot and returns true or false if the play can move to it
+    public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         
-        if (newX <= 0 || newX > world.getBlocksWidth() || newY <= 0 || newY > world.getBlocksHeight()) {
-            return false;
+        List<Actor> touchingObjects = getObjectsAtOffset(dx, dy, null);
+        
+        for (int i = 0; i < touchingObjects.size(); i++) {
+            if (touchingObjects.get(i) instanceof Wall) {
+                return false;
+            }
+            
+            if (touchingObjects.get(i) instanceof PushBlock) {
+                PushBlock block = (PushBlock) touchingObjects.get(i);
+                block.push(dx, dy);
+            }
         }
-        
-        
+            
         return true;
     }
 }

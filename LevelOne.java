@@ -10,16 +10,16 @@ import java.lang.Math.*;
 public class LevelOne extends GameWorld
 {
     // The dimensions of the level. Not including outer walls
-    private static final int WIDTH = 3; 
-    private static final int HEIGHT = 3;
-    private static final int SPAWN_LOCATION_X = 1;
-    private static final int SPAWN_LOCATION_Y = 1;
+    private static int width = 3; 
+    private static int height = 3;
+    private static int spawnLocationX = 1;
+    private static int spawnLocationY = 1;
     
     public LevelOne()
     {
-        super(WIDTH, HEIGHT, SPAWN_LOCATION_X, SPAWN_LOCATION_X);
+        super(width, height, spawnLocationX, spawnLocationY);
         
-        
+        addObject(new PushBlock(new GreenfootImage("images/tiles/interactables/push_block.png"), scale, 2, 2), 0, 0);
         
     }
 }

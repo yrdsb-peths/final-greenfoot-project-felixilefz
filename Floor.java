@@ -6,15 +6,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Floor extends Block
+public class Floor extends TileObject
 {
     
-    public Floor(GreenfootImage image, int scale) {
-        super(image, scale);
+    public Floor(GreenfootImage image, int scale, int x, int y) {
+        super(image, scale, x ,y);
     }
     
     public void act() 
     {
-        // Add your action code here.
+        super.act();
     }    
 }
