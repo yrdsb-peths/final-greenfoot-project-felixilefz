@@ -24,7 +24,23 @@ public class PushBlock extends TileObject
     }
     
     public void push(int dx, int dy) {
-        x++;
+        
+        if (dx > 0) {
+            x++;
+        }
+        
+        if (dx < -1) {
+            x--;
+        }
+        
+        if (dy > 0) {
+            y++;
+        }
+        
+        if (dy < -1) {
+            y--;
+        }
     }
+    
     
 }

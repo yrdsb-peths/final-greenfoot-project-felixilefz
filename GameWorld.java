@@ -11,21 +11,25 @@ public class GameWorld extends World
     int scale;
     int width;
     int height;
+    Actor[][] floorGrid; 
+    Actor[][] blockGrid;
     
-    public GameWorld(int width, int height, int spawnX, int spawnY)
+    public GameWorld(int spawnX, int spawnY, String[][] floorPlan, String[][] blockPlan)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        this.width = width;
-        this.height = height;
+        this.width = floorGrid[0].length;
+        this.height = floorGrid.length;
+        floorGrid = new Actor[floorPlan.length][floorPlan[0].length];
+        blockGrid = new Actor[blockPlan.length][blockPlan[0].length];
         scale = Math.min(600 / (width+2), 400 / (height + 2)); // The plus 2 because of the outer walls
         
-        createBase();
-        
+        createBase(floorPlan, blockPlan);
+        setPaintOrder(Player.class, PushBlock.class, Wall.class, Floor.class);
         addObject(new Player(scale, spawnX, spawnY), 0, 0);
     }
     
-    public void createBase() {
+    public void createBase(String[][] floorPlan, String[][] blockPlan) {
         // Creates the outer walls and places basic floor tiles
         String path = "images/tiles";
         int x = 0;
@@ -48,6 +52,7 @@ public class GameWorld extends World
             x ++;
             for (int j = 0; j < width; j++) {
                 addObject(new Floor(new GreenfootImage(path + "/floors/tile_basic.png"), scale, x ,y), 0, 0);
+                createTile(x, y);
                 x ++;
             }
             addObject(new Wall(new GreenfootImage(path + "/walls/wall_vertical.png"), scale, x ,y), 0, 0);
@@ -67,7 +72,11 @@ public class GameWorld extends World
         addObject(new Wall(new GreenfootImage(path + "/walls/wall_bottom_right_corner.png"), scale, x ,y), 0, 0);
         
     }
+    
+    public void createTile(int x, int y) {
         
+        
+    }
     
     public int getBlocksWidth() {
         return width;

@@ -19,11 +19,7 @@ public class TravelButton extends Actor
                 Greenfoot.setWorld(new LevelSelect());
             } else if (level == 1) {
                 Greenfoot.setWorld(new LevelOne());
-            } else if (level == 2) {
-                Greenfoot.setWorld(new LevelTwo());
-            } else if (level == 3) {
-                Greenfoot.setWorld(new LevelOne());
-            }
+            } 
                 
         }
         
