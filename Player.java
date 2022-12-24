@@ -11,6 +11,7 @@ public class Player extends TileObject
     int scale;
     SimpleTimer controlTimer = new SimpleTimer();
     
+    // Not used yet
     public Player(int scale, int x, int y) {
         super(new GreenfootImage("images/player.png"), scale, x , y);
         this.scale = scale;
@@ -21,29 +22,33 @@ public class Player extends TileObject
         setImage(image);
     }
     
+    public Player() {
+        super(new GreenfootImage("images/player.png"));
+    }
+    
     public void act()
     {
         // Add your action code here.
         
         GameWorld world = (GameWorld) getWorld();
         if (controlTimer.millisElapsed() > 250) {
-            if (Greenfoot.isKeyDown("d") && checkSpot(scale, 0)) {
-                x ++;
+            if (Greenfoot.isKeyDown("d") && checkSpot(1, 0)) {
+                setX(x+1);
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("a") && checkSpot(-scale, 0)) {
-                x --;
+            if (Greenfoot.isKeyDown("a") && checkSpot(-1, 0)) {
+                setX(x-1);
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("w") && checkSpot(0, -scale)) {
-                y --;
+            if (Greenfoot.isKeyDown("w") && checkSpot(0, -1)) {
+                setY(y-1);
                 controlTimer.mark();
             }
             
-            if (Greenfoot.isKeyDown("s") && checkSpot(0, scale)) {
-                y ++;
+            if (Greenfoot.isKeyDown("s") && checkSpot(0, 1)) {
+                setY(y+1);
                 controlTimer.mark();
             }
         }
@@ -55,19 +60,24 @@ public class Player extends TileObject
     public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         
-        List<Actor> touchingObjects = getObjectsAtOffset(dx, dy, null);
+        if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
+            return false;
+        }
         
-        for (int i = 0; i < touchingObjects.size(); i++) {
-            if (touchingObjects.get(i) instanceof Wall) {
-                return false;
-            }
-            
-            if (touchingObjects.get(i) instanceof PushBlock) {
-                PushBlock block = (PushBlock) touchingObjects.get(i);
-                block.push(dx, dy);
-            }
+        TileObject floor = world.getFloorAt(x+dx, y+dy);
+        TileObject block = world.getBlockAt(x+dx, y+dy);
+        
+        
+        if (block instanceof Wall) {
+            return false;
         }
             
+        if (block instanceof PushBlock) {
+            if (!((PushBlock)block).push(dx, dy)) {
+                return false;
+            }
+        }
+         
         return true;
     }
 }

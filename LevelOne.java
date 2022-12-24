@@ -14,24 +14,24 @@ public class LevelOne extends GameWorld
     private static int height = 3; // Useless
     private static int spawnLocationX = 1;
     private static int spawnLocationY = 1;
-    private static String[][] floorPlan = {
-        {"", "", ""},
-        {"", "", ""},
-        {"", "", ""},
-        {"", "", ""}
+    private static TileObject[][] floorPlan = {
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null}
     };
-    private static String[][] blockPlan = {
-        {"", "", ""},
-        {"", "PushBlock", ""},
-        {"", "", ""},
-        {"", "", ""}
+    private static TileObject[][] blockPlan = {
+        {new Player(), null, new Wall(), null},
+        {null, new PushBlock(), new PushBlock(), null},
+        {null, null, null, null},
+        {null, null, null, null}
     };
     
     public LevelOne()
     {
-        super(spawnLocationX, spawnLocationY, floorPlan, blockPlan);
+        super(floorPlan, blockPlan);
         
-        addObject(new PushBlock(new GreenfootImage("images/tiles/interactables/push_block.png"), scale, 2, 2), 0, 0);
+        
         
     }
 }

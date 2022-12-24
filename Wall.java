@@ -13,6 +13,10 @@ public class Wall extends TileObject
         super(image, scale, x , y);
     }
     
+    public Wall() {
+        super();
+    }
+    
     public void act() 
     {
         // Add your action code here.

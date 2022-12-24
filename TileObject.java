@@ -8,6 +8,7 @@ public class TileObject extends Actor
     int x;
     int y;
     
+    // Not used Currently, may be used later
     public TileObject(GreenfootImage image, int scale, int x, int y) {
         this.scale = scale;
         this.x = x;
@@ -16,8 +17,34 @@ public class TileObject extends Actor
         setImage(image);
     }
     
+    public TileObject(GreenfootImage image) {
+        setImage(image);
+    }
+    
+    public TileObject() {
+        
+    }
+    
     public void act() 
     {
-       setLocation(x*scale+scale/2, y*scale+scale/2);
-    }    
+       
+    }
+    
+    public void setX(int newX) {
+        x = newX;
+        setLocation(x*scale+scale/2, y*scale+scale/2);
+    }
+    
+    public void setY(int newY) {
+        y = newY;
+        setLocation(x*scale+scale/2, y*scale+scale/2);
+    }
+    
+    public void setScale(int newScale) {
+        scale = newScale;
+        setLocation(x*scale+scale/2, y*scale+scale/2);
+        GreenfootImage image = getImage();
+        image.scale(scale, scale);
+        setImage(image);
+    }
 }

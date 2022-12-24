@@ -11,83 +11,83 @@ public class GameWorld extends World
     int scale;
     int width;
     int height;
-    Actor[][] floorGrid; 
-    Actor[][] blockGrid;
+    TileObject[][] floorGrid; 
+    TileObject[][] blockGrid;
     
-    public GameWorld(int spawnX, int spawnY, String[][] floorPlan, String[][] blockPlan)
+    public GameWorld(TileObject[][] floorPlan, TileObject[][] blockPlan)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        this.width = floorGrid[0].length;
-        this.height = floorGrid.length;
-        floorGrid = new Actor[floorPlan.length][floorPlan[0].length];
-        blockGrid = new Actor[blockPlan.length][blockPlan[0].length];
-        scale = Math.min(600 / (width+2), 400 / (height + 2)); // The plus 2 because of the outer walls
+        width = floorPlan[0].length;
+        height = floorPlan.length;
+        floorGrid = new TileObject[height][width];
+        blockGrid = new TileObject[height][width];
+        // Clone entire array
+        for (int i = 0; i < floorPlan.length; i++) {
+            for (int j= 0; j < floorPlan[0].length; j++) {
+                floorGrid[i][j] = floorPlan[i][j];
+                blockGrid[i][j] = blockPlan[i][j];
+            }
+        }
         
-        createBase(floorPlan, blockPlan);
+        System.out.println(blockPlan[0]);
+        System.out.println(blockGrid[0]);
+        
+        
+        scale = Math.min(600 / (width), 400 / (height)); 
+        
+        createBase();
         setPaintOrder(Player.class, PushBlock.class, Wall.class, Floor.class);
-        addObject(new Player(scale, spawnX, spawnY), 0, 0);
+        
     }
     
-    public void createBase(String[][] floorPlan, String[][] blockPlan) {
+    public void createBase() {
         // Creates the outer walls and places basic floor tiles
         String path = "images/tiles";
-        int x = 0;
-        int y = 0;
         
-        addObject(new Wall(new GreenfootImage(path + "/walls/wall_top_left_corner.png"), scale, x, y), 0, 0);
-        x ++;
-        
-        for (int i = 0; i < width; i++) {
-            addObject(new Wall(new GreenfootImage(path + "/walls/wall_horizontal.png"), scale, x, y), 0, y);
-            x ++;
-        }
-        
-        addObject(new Wall(new GreenfootImage(path + "/walls/wall_top_right_corner.png"), scale, x, y), 0, 0);
-        y ++;
-        x = 0;
         for (int i = 0; i < height; i++) {
-            
-            addObject(new Wall(new GreenfootImage(path + "/walls/wall_vertical.png"), scale, x ,y), 0, 0);
-            x ++;
             for (int j = 0; j < width; j++) {
-                addObject(new Floor(new GreenfootImage(path + "/floors/tile_basic.png"), scale, x ,y), 0, 0);
-                createTile(x, y);
-                x ++;
+                if (floorGrid[i][j] != null) {
+                    addObject(floorGrid[i][j], 0, 0);
+                    floorGrid[i][j].setX(j);
+                    floorGrid[i][j].setY(i);
+                    floorGrid[i][j].setScale(scale);
+                } else {
+                    addObject(new Floor(new GreenfootImage(path + "/floors/tile_basic.png"), scale, j ,i), j*scale+scale/2, i*scale+scale/2);
+                }
+                
+                if (blockGrid[i][j] != null) {
+                    addObject(blockGrid[i][j], 0, 0);
+                    blockGrid[i][j].setX(j);
+                    blockGrid[i][j].setY(i);
+                    blockGrid[i][j].setScale(scale);
+                } 
+                
             }
-            addObject(new Wall(new GreenfootImage(path + "/walls/wall_vertical.png"), scale, x ,y), 0, 0);
-            x = 0;
-            y ++;
         }
-        
-        
-        addObject(new Wall(new GreenfootImage(path + "/walls/wall_bottom_left_corner.png"), scale, x ,y), 0, 0);
-        x ++;
-        
-        for (int i = 0; i < width; i++) {
-            addObject(new Wall(new GreenfootImage(path + "/walls/wall_horizontal.png"), scale, x ,y), 0, 0);
-            x ++;
-        }
-        
-        addObject(new Wall(new GreenfootImage(path + "/walls/wall_bottom_right_corner.png"), scale, x ,y), 0, 0);
-        
+       
     }
     
-    public void createTile(int x, int y) {
-        
-        
-    }
-    
-    public int getBlocksWidth() {
+    public int getGridWidth() {
         return width;
     }
     
-    public int getBlocksHeight() {
+    public int getGridHeight() {
         return height;
     }
     
-    public int getScale() {
-        return scale;
+    public TileObject getFloorAt(int x, int y) {
+        return floorGrid[y][x];
     }
     
+    public TileObject getBlockAt(int x, int y) {
+        return blockGrid[y][x];
+    }
+    
+    public void removeBlock(int x, int y) {
+        blockGrid[y][x] = null;
+    }
+    
+    public void replaceBlock(int x, int y, TileObject block) {
+        blockGrid[y][x] = block;
+    }
 }

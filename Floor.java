@@ -10,7 +10,11 @@ public class Floor extends TileObject
 {
     
     public Floor(GreenfootImage image, int scale, int x, int y) {
-        super(image, scale, x ,y);
+        super(image, scale, x , y);
+    }
+    
+    public Floor() {
+        super();
     }
     
     public void act() 

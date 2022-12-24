@@ -12,9 +12,9 @@ public class PushBlock extends TileObject
      * Act - do whatever the Interactables wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    
-    public PushBlock(GreenfootImage image, int scale, int x, int y) {
-        super(image, scale, x, y);
+    // Useless for now but may be used
+    public PushBlock() {
+        super(new GreenfootImage("images/tiles/interactables/push_block.png")); 
     }
     
     public void act() 
@@ -23,24 +23,39 @@ public class PushBlock extends TileObject
         super.act();
     }
     
-    public void push(int dx, int dy) {
-        
-        if (dx > 0) {
-            x++;
+    public boolean push(int dx, int dy) {
+        GameWorld world = (GameWorld) getWorld();
+        if (!checkSpot(dx, dy)) {
+            System.out.println((x+dx) + " " + (y+dy));
+            return false;
         }
-        
-        if (dx < -1) {
-            x--;
-        }
-        
-        if (dy > 0) {
-            y++;
-        }
-        
-        if (dy < -1) {
-            y--;
-        }
+        world.removeBlock(x, y);
+        setX(x+dx);
+        setY(y+dy);
+        world.replaceBlock(x, y, this);
+        return true;
     }
     
-    
+    public boolean checkSpot(int dx, int dy) {
+        GameWorld world = (GameWorld) getWorld();
+        if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
+            
+            return false;
+        }
+        
+        TileObject floor = world.getFloorAt(x+dx, y+dy);
+        TileObject block = world.getBlockAt(x+dx, y+dy);
+        
+        
+        if (block instanceof Wall) {
+            return false;
+        }
+            
+        if (block instanceof PushBlock) {
+            if (!((PushBlock)block).push(dx, dy)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
