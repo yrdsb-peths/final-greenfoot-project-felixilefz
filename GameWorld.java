@@ -29,14 +29,11 @@ public class GameWorld extends World
             }
         }
         
-        System.out.println(blockPlan[0]);
-        System.out.println(blockGrid[0]);
-        
         
         scale = Math.min(600 / (width), 400 / (height)); 
         
         createBase();
-        setPaintOrder(Player.class, PushBlock.class, Wall.class, Floor.class);
+        setPaintOrder(PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);
         
     }
     
@@ -67,6 +64,12 @@ public class GameWorld extends World
        
     }
     
+    public void finishLevel() {
+        
+    }
+    
+    //Getters and Setters
+    
     public int getGridWidth() {
         return width;
     }
@@ -89,5 +92,9 @@ public class GameWorld extends World
     
     public void replaceBlock(int x, int y, TileObject block) {
         blockGrid[y][x] = block;
+    }
+    
+    public void removeFloor(int x, int y) {
+        floorGrid[y][x] = null;
     }
 }

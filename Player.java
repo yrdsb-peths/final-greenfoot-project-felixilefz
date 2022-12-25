@@ -23,7 +23,7 @@ public class Player extends TileObject
     }
     
     public Player() {
-        super(new GreenfootImage("images/player.png"));
+        
     }
     
     public void act()
@@ -76,6 +76,10 @@ public class Player extends TileObject
             if (!((PushBlock)block).push(dx, dy)) {
                 return false;
             }
+        }
+        
+        if (block instanceof Finish) {
+            world.finishLevel();
         }
          
         return true;

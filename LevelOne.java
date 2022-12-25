@@ -10,21 +10,18 @@ import java.lang.Math.*;
 public class LevelOne extends GameWorld
 {
     // The dimensions of the level. Not including outer walls
-    private static int width = 3; // Useless
-    private static int height = 3; // Useless
-    private static int spawnLocationX = 1;
-    private static int spawnLocationY = 1;
+    private static String wallVertical = "images/tiles/walls/wall_vertical.png";
     private static TileObject[][] floorPlan = {
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, new Water(), null},
+        {null, null, null, null, null, null},
     };
     private static TileObject[][] blockPlan = {
-        {new Player(), null, new Wall(), null},
-        {null, new PushBlock(), new PushBlock(), null},
-        {null, null, null, null},
-        {null, null, null, null}
+        {new Player(), null, null, null, null, null},
+        {null, null, null, null, new PushBlock(), new PushBlock()},
+        {null, null, null, new Wall(), null, null},
+        {null, null, null, new Wall(wallVertical), null, new Finish()},
     };
     
     public LevelOne()

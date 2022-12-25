@@ -8,13 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PushBlock extends TileObject
 {
-    /**
-     * Act - do whatever the Interactables wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    // Useless for now but may be used
+
     public PushBlock() {
-        super(new GreenfootImage("images/tiles/interactables/push_block.png")); 
+        
     }
     
     public void act() 
@@ -26,20 +22,15 @@ public class PushBlock extends TileObject
     public boolean push(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (!checkSpot(dx, dy)) {
-            System.out.println((x+dx) + " " + (y+dy));
             return false;
         }
-        world.removeBlock(x, y);
-        setX(x+dx);
-        setY(y+dy);
-        world.replaceBlock(x, y, this);
+        
         return true;
     }
     
     public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
-            
             return false;
         }
         
@@ -47,8 +38,16 @@ public class PushBlock extends TileObject
         TileObject block = world.getBlockAt(x+dx, y+dy);
         
         
-        if (block instanceof Wall) {
+        if (block instanceof Wall || block instanceof Finish) {
             return false;
+        }
+        
+        if (floor instanceof Water) {
+            world.removeBlock(x, y);
+            world.removeFloor(x+dx, y+dy);
+            world.removeObject(floor);
+            world.removeObject(this);
+            return true;
         }
             
         if (block instanceof PushBlock) {
@@ -56,6 +55,11 @@ public class PushBlock extends TileObject
                 return false;
             }
         }
+        
+        world.removeBlock(x, y);
+        setX(x+dx);
+        setY(y+dy);
+        world.replaceBlock(x, y, this);
         return true;
     }
 }

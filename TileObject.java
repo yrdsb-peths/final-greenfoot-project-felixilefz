@@ -17,10 +17,6 @@ public class TileObject extends Actor
         setImage(image);
     }
     
-    public TileObject(GreenfootImage image) {
-        setImage(image);
-    }
-    
     public TileObject() {
         
     }

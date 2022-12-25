@@ -1,29 +1,29 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Wall here.
+ * Write a description of class Water here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Wall extends TileObject
+public class Water extends TileObject
 {
-    
-    public Wall(GreenfootImage image, int scale, int x, int y) {
+    public Water(GreenfootImage image, int scale, int x, int y) {
         super(image, scale, x , y);
     }
     
-    public Wall(String image) {
+    public Water(String image) {
         setImage(new GreenfootImage(image));
     }
     
-    public Wall() {
+    public Water() {
         super();
     }
     
     public void act() 
     {
         // Add your action code here.
-        super.act();
-    }    
+        GameWorld world = (GameWorld) getWorld();
+        
+    }   
 }
