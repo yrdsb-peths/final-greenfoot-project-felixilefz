@@ -68,7 +68,7 @@ public class Player extends TileObject
         TileObject block = world.getBlockAt(x+dx, y+dy);
         
         
-        if (block instanceof Wall) {
+        if (block instanceof Wall || floor instanceof Water) {
             return false;
         }
             

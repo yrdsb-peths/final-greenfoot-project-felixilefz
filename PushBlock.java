@@ -44,7 +44,15 @@ public class PushBlock extends TileObject
         
         if (floor instanceof Water) {
             world.removeBlock(x, y);
-            world.removeFloor(x+dx, y+dy);
+            
+            Floor newFloor = new Floor();
+            world.addObject(newFloor, 0, 0);
+            newFloor.setX(x + dx);
+            newFloor.setY(y + dy);
+            newFloor.setScale(scale);
+            world.replaceFloor(x+dx, y+dy, newFloor);
+            
+            
             world.removeObject(floor);
             world.removeObject(this);
             return true;

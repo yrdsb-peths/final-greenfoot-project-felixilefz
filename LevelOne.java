@@ -18,10 +18,10 @@ public class LevelOne extends GameWorld
         {null, null, null, null, null, null},
     };
     private static TileObject[][] blockPlan = {
-        {new Player(), null, null, null, null, null},
-        {null, null, null, null, new PushBlock(), new PushBlock()},
-        {null, null, null, new Wall(), null, null},
-        {null, null, null, new Wall(wallVertical), null, new Finish()},
+        {new Player(), null, null, null, new PushBlock(), null},
+        {null, null, null, new PushBlock(), new PushBlock(), null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, new Finish()},
     };
     
     public LevelOne()

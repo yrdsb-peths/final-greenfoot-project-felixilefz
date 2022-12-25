@@ -97,4 +97,9 @@ public class GameWorld extends World
     public void removeFloor(int x, int y) {
         floorGrid[y][x] = null;
     }
+    
+    public void replaceFloor(int x, int y, TileObject floor) {
+        floorGrid[y][x] = floor;
+    }
+    
 }
