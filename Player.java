@@ -35,19 +35,13 @@ public class Player extends TileObject
             if (Greenfoot.isKeyDown("d") && checkSpot(1, 0)) {
                 setX(x+1);
                 controlTimer.mark();
-            }
-            
-            if (Greenfoot.isKeyDown("a") && checkSpot(-1, 0)) {
+            } else if (Greenfoot.isKeyDown("a") && checkSpot(-1, 0)) {
                 setX(x-1);
                 controlTimer.mark();
-            }
-            
-            if (Greenfoot.isKeyDown("w") && checkSpot(0, -1)) {
+            } else if (Greenfoot.isKeyDown("w") && checkSpot(0, -1)) {
                 setY(y-1);
                 controlTimer.mark();
-            }
-            
-            if (Greenfoot.isKeyDown("s") && checkSpot(0, 1)) {
+            } else if (Greenfoot.isKeyDown("s") && checkSpot(0, 1)) {
                 setY(y+1);
                 controlTimer.mark();
             }

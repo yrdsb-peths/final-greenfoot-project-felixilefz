@@ -65,7 +65,7 @@ public class GameWorld extends World
     }
     
     public void finishLevel() {
-        
+        Greenfoot.setWorld(new LevelSelect());
     }
     
     //Getters and Setters
