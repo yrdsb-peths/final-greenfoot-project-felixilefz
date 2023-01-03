@@ -12,7 +12,7 @@ public class LevelThree extends GameWorld
     // The dimensions of the level. Not including outer walls
     private static String wallVertical = "images/tiles/walls/wall_vertical.png";
     private static TileObject[][] floorPlan = {
-        {null, null, null, null, null, null},
+        {null, null, null, new Ice(), null, null},
         {null, null, null, null, new Water(), null},
         {null, null, null, null, null, null},
         {null, null, null, null, null, null}
@@ -21,7 +21,7 @@ public class LevelThree extends GameWorld
         {new Player(), null, null, null, null, null},
         {null, new PushBlock(), new Key(), null, null, null},
         {null, null, null, null, null, null},
-        {null, null, null, null, null, new Finish()}
+        {null, null, null, new Bomb(), null, new Finish()}
     };
     
     public LevelThree()

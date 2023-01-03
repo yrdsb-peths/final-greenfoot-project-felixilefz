@@ -72,10 +72,18 @@ public class Player extends TileObject
             }
         }
         
+        if (floor instanceof Ice) {
+            
+        }
+        
         if (block instanceof Finish) {
             world.finishLevel();
         }
          
         return true;
+    }
+    
+    private void slip(int dx, int dy) {
+        
     }
 }
