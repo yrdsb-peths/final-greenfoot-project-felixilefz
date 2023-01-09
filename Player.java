@@ -10,6 +10,7 @@ public class Player extends TileObject
 {
     int scale;
     SimpleTimer controlTimer = new SimpleTimer();
+    boolean tweening = false;
     
     // Not used yet
     public Player(int scale, int x, int y) {
@@ -29,21 +30,23 @@ public class Player extends TileObject
     public void act()
     {
         // Add your action code here.
-        
+        if (tweening) {
+            return;
+        }
         GameWorld world = (GameWorld) getWorld();
         if (controlTimer.millisElapsed() > 250) {
-            if (Greenfoot.isKeyDown("d") && checkSpot(1, 0)) {
-                setX(x+1);
-                controlTimer.mark();
-            } else if (Greenfoot.isKeyDown("a") && checkSpot(-1, 0)) {
-                setX(x-1);
-                controlTimer.mark();
-            } else if (Greenfoot.isKeyDown("w") && checkSpot(0, -1)) {
-                setY(y-1);
-                controlTimer.mark();
-            } else if (Greenfoot.isKeyDown("s") && checkSpot(0, 1)) {
-                setY(y+1);
-                controlTimer.mark();
+            
+            if (Greenfoot.isKeyDown("d")) {
+                checkSpot(1, 0);
+            } else if (Greenfoot.isKeyDown("a")) {
+                checkSpot(-1, 0);
+                
+            } else if (Greenfoot.isKeyDown("w")) {
+                checkSpot(0, -1);
+                
+            } else if (Greenfoot.isKeyDown("s")) {
+                checkSpot(0, 1);
+                
             }
         }
         super.act();
@@ -53,7 +56,7 @@ public class Player extends TileObject
     // Checks the spot of the spot and returns true or false if the play can move to it
     public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
-        
+        controlTimer.mark();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
             return false;
         }
@@ -63,6 +66,7 @@ public class Player extends TileObject
         
         
         if (block instanceof Wall || floor instanceof Water) {
+            
             return false;
         }
             
@@ -73,17 +77,51 @@ public class Player extends TileObject
         }
         
         if (floor instanceof Ice) {
-            
+            world.removeBlock(x, y);
+            setX(x+dx);
+            setY(y+dy);
+            world.replaceBlock(x, y, this);
+            slip(x, y, dx, dy);
+            return false;
         }
         
         if (block instanceof Finish) {
             world.finishLevel();
         }
-         
+        world.removeBlock(x, y);
+        setX(x+dx);
+        setY(y+dy);
+        world.replaceBlock(x, y, this);
         return true;
     }
     
-    private void slip(int dx, int dy) {
+    private void slip(int newX, int newY, int dx, int dy) {
+        GameWorld world = (GameWorld) getWorld();
+        if (newX + dx >= world.getGridWidth() || newY + dy >= world.getGridHeight() || newX+dx < 0 || newY+dy < 0) {
+            return;
+        }
         
+        TileObject floor = world.getFloorAt(newX+dx, newY+dy);
+        TileObject block = world.getBlockAt(newX+dx, newY+dy);
+        
+        if (floor instanceof Ice) {
+            slip(newX+dx, newY+dy, dx, dy);
+            return;
+        }
+        
+        if (block instanceof PushBlock || block instanceof Wall || block instanceof Finish) {
+            tween(newX, newY);
+            return;
+        }
+        tween(newX+dx, newY+dy);
+        
+    }
+    
+    private void tween(int endX, int endY) {
+        GameWorld world = (GameWorld) getWorld();
+        world.removeBlock(x, y);
+        setX(endX);
+        setY(endY);
+        world.replaceBlock(endX, endY, this);
     }
 }
