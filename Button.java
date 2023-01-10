@@ -25,18 +25,19 @@ public class Button extends Actor
         
         if (Greenfoot.mouseMoved(this)) {
             hover = true;
-        } else if (Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)) {
+        } else if (Greenfoot.mouseMoved(null)) {
             hover = false;
             mouseDown = false;
         }
         
-        
-        if (Greenfoot.mousePressed(this)) {
+        if (Greenfoot.mousePressed(this) && !mouseDown) {
             mouseDown = true;
         }
                                                                                                                                                                                                                                                                        
         if (Greenfoot.mouseClicked(this) && mouseDown) {
-            System.out.println("b");
+            action();
+            mouseDown = false;
+        } else if (Greenfoot.mouseClicked(null)) {
             mouseDown = false;
         }
     }

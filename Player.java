@@ -104,15 +104,23 @@ public class Player extends TileObject
         TileObject floor = world.getFloorAt(newX+dx, newY+dy);
         TileObject block = world.getBlockAt(newX+dx, newY+dy);
         
+        if (block instanceof PushBlock || block instanceof Wall || block instanceof Finish) {
+            tween(newX, newY);
+            return;
+        }
+        
         if (floor instanceof Ice) {
             slip(newX+dx, newY+dy, dx, dy);
             return;
         }
         
-        if (block instanceof PushBlock || block instanceof Wall || block instanceof Finish) {
-            tween(newX, newY);
-            return;
+        
+        
+        if (floor instanceof Water) {
+            // death
+            System.out.println("dead");
         }
+        
         tween(newX+dx, newY+dy);
         
     }
