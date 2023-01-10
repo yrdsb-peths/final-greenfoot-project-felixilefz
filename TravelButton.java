@@ -14,7 +14,7 @@ public class TravelButton extends Button
     
     public void action() 
     {
-        
+        // should switch to switch cases
         if (level == 0) {
             Greenfoot.setWorld(new LevelSelect());
         } else if (level == 1) {
@@ -23,8 +23,9 @@ public class TravelButton extends Button
             Greenfoot.setWorld(new LevelTwo());
         } else if (level == 3) {
             Greenfoot.setWorld(new LevelThree());
-        } 
-                
+        } else if (level == 4) {
+            Greenfoot.setWorld(new LevelFour());
+        }      
         
         
     }
