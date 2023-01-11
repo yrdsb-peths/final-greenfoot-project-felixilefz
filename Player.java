@@ -37,13 +37,29 @@ public class Player extends TileObject
         if (controlTimer.millisElapsed() > 200) {
             
             if (Greenfoot.isKeyDown("d")) {
-                checkSpot(1, 0);
+                world.playerMoved();
+                if (!checkSpot(1, 0)) {
+                    world.removeUndo();
+                }
             } else if (Greenfoot.isKeyDown("a")) {
-                checkSpot(-1, 0);
+                world.playerMoved();
+                if (!checkSpot(-1, 0)) {
+                    world.removeUndo();
+                }
             } else if (Greenfoot.isKeyDown("w")) {
-                checkSpot(0, -1);
+                world.playerMoved();
+                if (!checkSpot(0, -1)) {
+                    world.removeUndo();
+                }
             } else if (Greenfoot.isKeyDown("s")) {
-                checkSpot(0, 1);
+                world.playerMoved();
+                if (!checkSpot(0, 1)) {
+                    world.removeUndo();
+                }
+            } else if (Greenfoot.isKeyDown("z")) {
+                controlTimer.mark();
+                world.undoMove();
+                
             }
         }
         super.act();
@@ -84,7 +100,7 @@ public class Player extends TileObject
         if (block instanceof Finish) {
             world.finishLevel();
         }
-        world.playerMoved();
+        
         world.removeBlock(x, y);
         setX(x+dx);
         setY(y+dy);

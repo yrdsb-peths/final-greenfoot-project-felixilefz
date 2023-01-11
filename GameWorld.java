@@ -92,19 +92,42 @@ public class GameWorld extends World
         
         // testing purposes
         for (int i = 0; i < previousMoves.size(); i++) {
-            System.out.println(i + ": " + previousMoves.get(i));
+            System.out.println(i+1 + ": " + previousMoves.get(i));
         }
         System.out.println();
+    }
+    
+    public void removeUndo() {
+        previousMoves.pop();
+        previousMoves.pop();
     }
     
     public void undoMove() {
         if (previousMoves.empty()) {
             return;
         }
+        TileObject[][] oldBlockGrid = previousMoves.pop();
+        TileObject[][] oldFloorGrid = previousMoves.pop();
+        
+        for (int i = 0; i < floorGrid.length; i++) {
+            for (int j= 0; j < floorGrid[0].length; j++) {
+                
+                floorGrid[i][j] = oldFloorGrid[i][j];
+                blockGrid[i][j] = oldBlockGrid[i][j];
+                floorGrid[i][j].setX(j);
+                floorGrid[i][j].setY(i);
+                if (blockGrid[i][j] != null) {
+                    blockGrid[i][j].setX(j);
+                    blockGrid[i][j].setY(i);
+                }
+                
+            }
+        }
     }
     
     public void finishLevel() {
-        Greenfoot.setWorld(new LevelSelect());
+        
+        
     }
     
     public void lostLevel() {
