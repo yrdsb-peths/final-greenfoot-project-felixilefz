@@ -24,7 +24,6 @@ public class Key extends PushBlock
         TileObject block = world.getBlockAt(x+dx, y+dy);
         
         
-        
         if (block instanceof Door) {
             world.removeBlock(x, y);
             world.removeBlock(x+dx, y+dy);

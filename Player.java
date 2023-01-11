@@ -40,13 +40,10 @@ public class Player extends TileObject
                 checkSpot(1, 0);
             } else if (Greenfoot.isKeyDown("a")) {
                 checkSpot(-1, 0);
-                
             } else if (Greenfoot.isKeyDown("w")) {
                 checkSpot(0, -1);
-                
             } else if (Greenfoot.isKeyDown("s")) {
                 checkSpot(0, 1);
-                
             }
         }
         super.act();
@@ -75,6 +72,7 @@ public class Player extends TileObject
         }
         
         if (floor instanceof Ice) {
+            world.playerMoved();
             world.removeBlock(x, y);
             setX(x+dx);
             setY(y+dy);
@@ -86,6 +84,7 @@ public class Player extends TileObject
         if (block instanceof Finish) {
             world.finishLevel();
         }
+        world.playerMoved();
         world.removeBlock(x, y);
         setX(x+dx);
         setY(y+dy);
@@ -123,6 +122,7 @@ public class Player extends TileObject
     }
     
     private void tween(int endX, int endY) {
+        // Planned to have an in between animation, but not here yet. 
         GameWorld world = (GameWorld) getWorld();
         world.removeBlock(x, y);
         setX(endX);

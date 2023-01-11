@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
+import java.util.*;
 /**
  * Write a description of class GameWorld here.
  * 
@@ -13,6 +14,7 @@ public class GameWorld extends World
     int height;
     TileObject[][] floorGrid; 
     TileObject[][] blockGrid;
+    Stack<TileObject[][]> previousMoves = new Stack<>();
     
     public GameWorld(TileObject[][] floorPlan, TileObject[][] blockPlan)
     {    
@@ -64,6 +66,41 @@ public class GameWorld extends World
             }
         }
        
+    }
+    
+    public void playerMoved() {
+        int prevMovesSize = previousMoves.size();
+        
+        // if stack size is above 20 (or 10 moves) remove the least recent one
+        if (prevMovesSize >= 20) {
+            previousMoves.remove(0);
+            previousMoves.remove(0);
+        }
+        
+        TileObject[][] oldFloorGrid = new TileObject[floorGrid.length][floorGrid[0].length];
+        TileObject[][] oldBlockGrid = new TileObject[floorGrid.length][floorGrid[0].length];
+        
+        for (int i = 0; i < floorGrid.length; i++) {
+            for (int j= 0; j < floorGrid[0].length; j++) {
+                oldFloorGrid[i][j] = floorGrid[i][j];
+                oldBlockGrid[i][j] = blockGrid[i][j];
+            }
+        }
+        
+        previousMoves.push(oldFloorGrid);
+        previousMoves.push(oldBlockGrid);
+        
+        // testing purposes
+        for (int i = 0; i < previousMoves.size(); i++) {
+            System.out.println(i + ": " + previousMoves.get(i));
+        }
+        System.out.println();
+    }
+    
+    public void undoMove() {
+        if (previousMoves.empty()) {
+            return;
+        }
     }
     
     public void finishLevel() {
