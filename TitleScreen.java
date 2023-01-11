@@ -17,7 +17,7 @@ public class TitleScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
-        TravelButton playButton = new TravelButton(0, 100, 100, new GreenfootImage("images/buttons/play_button.png"));
+        TravelButton playButton = new TravelButton(0, 100, 100, new GreenfootImage("images/ui/buttons/play_button.png"));
         addObject(playButton, getWidth()/2, getHeight()/2);
     }
 }

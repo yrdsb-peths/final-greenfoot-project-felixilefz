@@ -32,7 +32,7 @@ public class LevelSelect extends World
         
         for (int i = 0; i < totalRows; i++) {
             for (int j = 0; j < BUTTONS_PER_ROW; j++) {
-                addObject(new TravelButton(i * BUTTONS_PER_ROW + j + 1,  BUTTON_SCALE, BUTTON_SCALE, new GreenfootImage("images/buttons/level_button" + (i * BUTTONS_PER_ROW + j + 1)  + ".png")), x, y);
+                addObject(new TravelButton(i * BUTTONS_PER_ROW + j + 1,  BUTTON_SCALE, BUTTON_SCALE, new GreenfootImage("images/ui/buttons/level_button" + (i * BUTTONS_PER_ROW + j + 1)  + ".png")), x, y);
                 x += spacing;
             }
             y += 100;
@@ -42,7 +42,7 @@ public class LevelSelect extends World
         // Checks if there's remaining buttons and adds it to the world
         if (LEVEL_COUNT % BUTTONS_PER_ROW != 0) {
             for (int i = 0; i < LEVEL_COUNT % BUTTONS_PER_ROW; i++) {
-                addObject(new TravelButton(totalRows * BUTTONS_PER_ROW + i + 1, BUTTON_SCALE, BUTTON_SCALE, new GreenfootImage("images/buttons/level_button" + (totalRows * BUTTONS_PER_ROW + i + 1)  + ".png")), x, y);
+                addObject(new TravelButton(totalRows * BUTTONS_PER_ROW + i + 1, BUTTON_SCALE, BUTTON_SCALE, new GreenfootImage("images/ui/buttons/level_button" + (totalRows * BUTTONS_PER_ROW + i + 1)  + ".png")), x, y);
                 x += spacing;
             }
         }

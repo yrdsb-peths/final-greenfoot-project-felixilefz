@@ -38,6 +38,21 @@ public class Key extends PushBlock
             return false;
         }
         
+        if (block instanceof PushBlock) {
+            if (!((PushBlock)block).push(dx, dy)) {
+                return false;
+            }
+        }
+        
+        if (floor instanceof Ice) {
+            world.removeBlock(x, y);
+            setX(x+dx);
+            setY(y+dy);
+            world.replaceBlock(x, y, this);
+            slip(x, y, dx, dy);
+            return true;
+        }
+        
         if (floor instanceof Water) {
             world.removeBlock(x, y);
             
@@ -54,11 +69,7 @@ public class Key extends PushBlock
             return true;
         }
             
-        if (block instanceof PushBlock) {
-            if (!((PushBlock)block).push(dx, dy)) {
-                return false;
-            }
-        }
+        
         
         world.removeBlock(x, y);
         setX(x+dx);
@@ -66,4 +77,51 @@ public class Key extends PushBlock
         world.replaceBlock(x, y, this);
         return true;
     }
+    
+    private void slip(int newX, int newY, int dx, int dy) {
+        GameWorld world = (GameWorld) getWorld();
+        if (newX + dx >= world.getGridWidth() || newY + dy >= world.getGridHeight() || newX+dx < 0 || newY+dy < 0) {
+            tween(newX, newY);
+            return;
+        }
+        
+        TileObject floor = world.getFloorAt(newX+dx, newY+dy);
+        TileObject block = world.getBlockAt(newX+dx, newY+dy);
+        
+        if (block instanceof PushBlock || block instanceof Wall || block instanceof Finish) {
+            tween(newX, newY);
+            return;
+        }
+        
+        if (floor instanceof Ice) {
+            slip(newX+dx, newY+dy, dx, dy);
+            return;
+        }
+        
+        if (floor instanceof Water) {
+            Floor newFloor = new Floor();
+            world.addObject(newFloor, 0, 0);
+            newFloor.setX(newX + dx);
+            newFloor.setY(newY + dy);
+            newFloor.setScale(scale);
+            world.replaceFloor(newX+dx, newY+dy, newFloor);
+            world.removeObject(floor);
+            world.removeBlock(x, y);
+            world.removeObject(this);
+            
+            return;
+        }
+        
+        tween(newX+dx, newY+dy);
+        
+    }
+    
+    private void tween(int endX, int endY) {
+        GameWorld world = (GameWorld) getWorld();
+        world.removeBlock(x, y);
+        setX(endX);
+        setY(endY);
+        world.replaceBlock(endX, endY, this);
+    }
+    
 }

@@ -34,7 +34,7 @@ public class Player extends TileObject
             return;
         }
         GameWorld world = (GameWorld) getWorld();
-        if (controlTimer.millisElapsed() > 250) {
+        if (controlTimer.millisElapsed() > 200) {
             
             if (Greenfoot.isKeyDown("d")) {
                 checkSpot(1, 0);
@@ -64,9 +64,7 @@ public class Player extends TileObject
         TileObject floor = world.getFloorAt(x+dx, y+dy);
         TileObject block = world.getBlockAt(x+dx, y+dy);
         
-        
         if (block instanceof Wall || floor instanceof Water) {
-            
             return false;
         }
             
@@ -98,6 +96,7 @@ public class Player extends TileObject
     private void slip(int newX, int newY, int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (newX + dx >= world.getGridWidth() || newY + dy >= world.getGridHeight() || newX+dx < 0 || newY+dy < 0) {
+            tween(newX, newY);
             return;
         }
         
@@ -113,8 +112,6 @@ public class Player extends TileObject
             slip(newX+dx, newY+dy, dx, dy);
             return;
         }
-        
-        
         
         if (floor instanceof Water) {
             // death

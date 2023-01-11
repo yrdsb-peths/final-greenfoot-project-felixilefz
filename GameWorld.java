@@ -49,7 +49,9 @@ public class GameWorld extends World
                     floorGrid[i][j].setY(i);
                     floorGrid[i][j].setScale(scale);
                 } else {
-                    addObject(new Floor(new GreenfootImage(path + "/floors/tile_basic.png"), scale, j ,i), j*scale+scale/2, i*scale+scale/2);
+                    TileObject floor = new Floor(new GreenfootImage(path + "/floors/tile_basic.png"), scale, j ,i);
+                    addObject(floor, j*scale+scale/2, i*scale+scale/2);
+                    replaceFloor(j, i, floor);
                 }
                 
                 if (blockGrid[i][j] != null) {
@@ -66,6 +68,10 @@ public class GameWorld extends World
     
     public void finishLevel() {
         Greenfoot.setWorld(new LevelSelect());
+    }
+    
+    public void lostLevel() {
+        
     }
     
     //Getters and Setters
