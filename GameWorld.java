@@ -38,7 +38,7 @@ public class GameWorld extends World
         scale = Math.min(600 / (width), 400 / (height)); 
         
         createBase();
-        setPaintOrder(Button.class, Menu.class, PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);
+        setPaintOrder(ActorImage.class, Button.class, Menu.class, PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);
         
     }
     
@@ -66,6 +66,7 @@ public class GameWorld extends World
                     blockGrid[i][j].setScale(scale);
                     if (blockGrid[i][j] instanceof Player) {
                         plr = (Player) blockGrid[i][j];
+                        plr.movementOn();
                     }
                 } 
                 
@@ -95,12 +96,6 @@ public class GameWorld extends World
         
         previousMoves.push(oldFloorGrid);
         previousMoves.push(oldBlockGrid);
-        
-        // testing purposes
-        for (int i = 0; i < previousMoves.size(); i++) {
-            System.out.println(i+1 + ": " + previousMoves.get(i));
-        }
-        System.out.println();
     }
     
     public void removeUndo() {
@@ -140,16 +135,17 @@ public class GameWorld extends World
     }
     
     public void finishLevel() {
-        TravelButton levelSelect = new TravelButton(0, 300, 50, new GreenfootImage("images/ui/buttons/level_select1.png"));
+        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
         ActorImage victory = new ActorImage(new GreenfootImage("images/ui/menu/victory.png"));
-        
-        addObject(new Menu(400, 350), getWidth()/2, getHeight()/2);
-        plr.toggleMovement();
-        
+        Menu menu = new Menu(400, 350);
+        addObject(menu, getWidth()/2, getHeight()/2);
+        plr.movementOff();
+        menu.addItem(victory, 0.85);
+        menu.addItem(levelSelect, 0.6);
     }
     
     public void lostLevel() {
-        
+        plr.movementOn();
     }
     
     //Getters and Setters

@@ -144,7 +144,11 @@ public class Player extends TileObject
         world.replaceBlock(endX, endY, this);
     }
     
-    public void toggleMovement() {
-        canMove = !canMove;
+    public void movementOff() {
+        canMove = false;
+    }
+    
+    public void movementOn() {
+        canMove = true;
     }
 }

@@ -8,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class UndoButton extends Button
 {
-    /**
-     * Act - do whatever the UndoButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    public UndoButton(String image, int numStates) {
+        super(image, numStates);
+    }
+    
     public void action()
     {
         GameWorld world = (GameWorld) getWorld();
