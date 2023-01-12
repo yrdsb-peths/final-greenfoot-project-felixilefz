@@ -30,7 +30,7 @@ public class LevelThree extends GameWorld
     
     public LevelThree()
     {
-        super(floorPlan, blockPlan);
+        super(floorPlan, blockPlan, 3);
         
         
         

@@ -15,10 +15,13 @@ public class GameWorld extends World
     TileObject[][] floorGrid; 
     TileObject[][] blockGrid;
     Stack<TileObject[][]> previousMoves = new Stack<>();
+    Player plr;
+    int level;
     
-    public GameWorld(TileObject[][] floorPlan, TileObject[][] blockPlan)
+    public GameWorld(TileObject[][] floorPlan, TileObject[][] blockPlan, int level)
     {    
         super(600, 400, 1); 
+        this.level = level;
         width = floorPlan[0].length;
         height = floorPlan.length;
         floorGrid = new TileObject[height][width];
@@ -35,7 +38,7 @@ public class GameWorld extends World
         scale = Math.min(600 / (width), 400 / (height)); 
         
         createBase();
-        setPaintOrder(PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);
+        setPaintOrder(Button.class, Menu.class, PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);
         
     }
     
@@ -61,6 +64,9 @@ public class GameWorld extends World
                     blockGrid[i][j].setX(j);
                     blockGrid[i][j].setY(i);
                     blockGrid[i][j].setScale(scale);
+                    if (blockGrid[i][j] instanceof Player) {
+                        plr = (Player) blockGrid[i][j];
+                    }
                 } 
                 
             }
@@ -109,14 +115,22 @@ public class GameWorld extends World
         TileObject[][] oldBlockGrid = previousMoves.pop();
         TileObject[][] oldFloorGrid = previousMoves.pop();
         
+        
+        
         for (int i = 0; i < floorGrid.length; i++) {
             for (int j= 0; j < floorGrid[0].length; j++) {
                 
                 floorGrid[i][j] = oldFloorGrid[i][j];
                 blockGrid[i][j] = oldBlockGrid[i][j];
+                if (floorGrid[i][j].getWorld() == null) {
+                    addObject(floorGrid[i][j], 0, 0);
+                }
                 floorGrid[i][j].setX(j);
                 floorGrid[i][j].setY(i);
                 if (blockGrid[i][j] != null) {
+                    if (blockGrid[i][j].getWorld() == null) {
+                        addObject(blockGrid[i][j], 0, 0);
+                    }
                     blockGrid[i][j].setX(j);
                     blockGrid[i][j].setY(i);
                 }
@@ -126,7 +140,11 @@ public class GameWorld extends World
     }
     
     public void finishLevel() {
+        TravelButton levelSelect = new TravelButton(0, 300, 50, new GreenfootImage("images/ui/buttons/level_select1.png"));
+        ActorImage victory = new ActorImage(new GreenfootImage("images/ui/menu/victory.png"));
         
+        addObject(new Menu(400, 350), getWidth()/2, getHeight()/2);
+        plr.toggleMovement();
         
     }
     

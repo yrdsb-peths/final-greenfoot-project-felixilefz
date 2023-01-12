@@ -11,6 +11,7 @@ public class Player extends TileObject
     int scale;
     SimpleTimer controlTimer = new SimpleTimer();
     boolean tweening = false;
+    boolean canMove = true;
     
     // Not used yet
     public Player(int scale, int x, int y) {
@@ -30,32 +31,28 @@ public class Player extends TileObject
     public void act()
     {
         // Add your action code here.
-        if (tweening) {
+        if (tweening || !canMove) {
             return;
         }
         GameWorld world = (GameWorld) getWorld();
         if (controlTimer.millisElapsed() > 200) {
             
             if (Greenfoot.isKeyDown("d")) {
-                world.playerMoved();
-                if (!checkSpot(1, 0)) {
-                    world.removeUndo();
-                }
+                
+                checkSpot(1, 0);
+                
             } else if (Greenfoot.isKeyDown("a")) {
-                world.playerMoved();
-                if (!checkSpot(-1, 0)) {
-                    world.removeUndo();
-                }
+                
+                checkSpot(-1, 0);
+                
             } else if (Greenfoot.isKeyDown("w")) {
-                world.playerMoved();
-                if (!checkSpot(0, -1)) {
-                    world.removeUndo();
-                }
+                
+                checkSpot(0, -1);
+                
             } else if (Greenfoot.isKeyDown("s")) {
-                world.playerMoved();
-                if (!checkSpot(0, 1)) {
-                    world.removeUndo();
-                }
+                
+                checkSpot(0, 1);
+                
             } else if (Greenfoot.isKeyDown("z")) {
                 controlTimer.mark();
                 world.undoMove();
@@ -80,15 +77,16 @@ public class Player extends TileObject
         if (block instanceof Wall || floor instanceof Water) {
             return false;
         }
-            
+        
+        world.playerMoved();
         if (block instanceof PushBlock) {
             if (!((PushBlock)block).push(dx, dy)) {
+                world.removeUndo();
                 return false;
             }
         }
         
         if (floor instanceof Ice) {
-            world.playerMoved();
             world.removeBlock(x, y);
             setX(x+dx);
             setY(y+dy);
@@ -144,5 +142,9 @@ public class Player extends TileObject
         setX(endX);
         setY(endY);
         world.replaceBlock(endX, endY, this);
+    }
+    
+    public void toggleMovement() {
+        canMove = !canMove;
     }
 }

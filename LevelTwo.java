@@ -26,7 +26,7 @@ public class LevelTwo extends GameWorld
     
     public LevelTwo()
     {
-        super(floorPlan, blockPlan);
+        super(floorPlan, blockPlan, 2);
         
         
         

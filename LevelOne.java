@@ -26,7 +26,7 @@ public class LevelOne extends GameWorld
     
     public LevelOne()
     {
-        super(floorPlan, blockPlan);
+        super(floorPlan, blockPlan, 1);
         
         
         

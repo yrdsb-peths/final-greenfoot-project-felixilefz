@@ -26,7 +26,7 @@ public class LevelFour extends GameWorld
     
     public LevelFour()
     {
-        super(floorPlan, blockPlan);
+        super(floorPlan, blockPlan, 4);
         
         
         
