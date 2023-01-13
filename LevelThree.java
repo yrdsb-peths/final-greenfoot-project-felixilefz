@@ -31,8 +31,13 @@ public class LevelThree extends GameWorld
     public LevelThree()
     {
         super(floorPlan, blockPlan, 3);
-        
-        
-        
+    }
+    
+    public int getOwnerTime() {
+        return 15000;
+    }
+    
+    public int getOwnerMoves() {
+        return 55;
     }
 }

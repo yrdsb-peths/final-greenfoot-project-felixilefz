@@ -81,6 +81,11 @@ public class Player extends TileObject
         }
         
         world.playerMoved();
+        
+        if (block instanceof Finish) {
+            world.finishLevel();
+        }
+        
         if (block instanceof PushBlock) {
             if (!((PushBlock)block).push(dx, dy)) {
                 world.removeUndo();
@@ -97,9 +102,7 @@ public class Player extends TileObject
             return false;
         }
         
-        if (block instanceof Finish) {
-            world.finishLevel();
-        }
+        
         
         world.removeBlock(x, y);
         setX(x+dx);

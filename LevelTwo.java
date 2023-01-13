@@ -31,4 +31,12 @@ public class LevelTwo extends GameWorld
         
         
     }
+    
+    public int getOwnerTime() {
+        return 5000;
+    }
+    
+    public int getOwnerMoves() {
+        return 16;
+    }
 }

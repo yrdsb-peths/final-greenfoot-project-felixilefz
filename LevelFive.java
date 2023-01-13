@@ -2,12 +2,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Write a description of class LevelFour here.
+ * Write a description of class LevelFive here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class LevelFour extends GameWorld
+public class LevelFive extends GameWorld
 {
     // The dimensions of the level. Not including outer walls
     private static String wallVertical = "images/tiles/walls/wall_vertical.png";
@@ -28,7 +28,7 @@ public class LevelFour extends GameWorld
         {null, new Wall(), null, null, null, null, null, null, new Wall()}
     };
     
-    public LevelFour()
+    public LevelFive()
     {
         super(floorPlan, blockPlan, 4);
         

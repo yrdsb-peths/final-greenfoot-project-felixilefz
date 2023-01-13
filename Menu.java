@@ -16,14 +16,18 @@ public class Menu extends Actor
         
         GreenfootImage actorImage = actor.getImage();
         
-        int newWidth = (int) (getImage().getWidth()*scale);
-        int newHeight = (int) (getImage().getWidth()*scale / actorImage.getWidth() * actorImage.getHeight()); 
-        actorImage.scale(newWidth, newHeight);
-        actorImage.scale(newWidth, newHeight);
-        
-        if (actor instanceof Button) {
-            ((Button) actor).setScale(newWidth, newHeight);
+        if (scale > 0) {
+            int newWidth = (int) (getImage().getWidth()*scale);
+            int newHeight = (int) (getImage().getWidth()*scale / actorImage.getWidth() * actorImage.getHeight()); 
+            actorImage.scale(newWidth, newHeight);
+            actorImage.scale(newWidth, newHeight);
+            if (actor instanceof Button) {
+                ((Button) actor).setScale(newWidth, newHeight);
+            }
         }
+        
+        
+        
         
         world.addObject(actor, getX(), getY() - getImage().getHeight()/2 + itemOffSet);
         itemOffSet += actor.getImage().getHeight() + 5;
