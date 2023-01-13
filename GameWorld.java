@@ -153,7 +153,7 @@ public class GameWorld extends World
         Menu menu = new Menu(400, 350);
         addObject(menu, getWidth()/2, getHeight()/2);
         plr.movementOff();
-        menu.addItem(victory, 0.8);
+        menu.addItem(victory, 0.7);
         menu.addItem(nextLevel, 0.5);
         menu.addItem(levelSelect, 0.5);
         menu.addItem(restart, 0.5);
@@ -181,7 +181,7 @@ public class GameWorld extends World
         }
         overallGrade -= timeGrade / 1000;
         System.out.println(overallGrade);
-        Label grade = new Label("Grade: " + overallGrade, 60);
+        Label grade = new Label("Grade: " + overallGrade, 40);
         menu.addItem(grade, 0);
         menuAssets.add(grade);
     }
@@ -195,7 +195,7 @@ public class GameWorld extends World
         Menu menu = new Menu(400, 350);
         addObject(menu, getWidth()/2, getHeight()/2);
         plr.movementOff();
-        menu.addItem(dead, 0.8);
+        menu.addItem(dead, 0.7);
         menu.addItem(undo, 0.5);
         menu.addItem(levelSelect, 0.5);
         menu.addItem(restart, 0.5);
@@ -216,7 +216,7 @@ public class GameWorld extends World
         Menu menu = new Menu(400, 350);
         addObject(menu, getWidth()/2, getHeight()/2);
         plr.movementOff();
-        menu.addItem(pause, 0.8);
+        menu.addItem(pause, 0.7);
         menu.addItem(levelSelect, 0.5);
         menu.addItem(restart, 0.5);
         menu.addItem(backToLevel, 0.5);

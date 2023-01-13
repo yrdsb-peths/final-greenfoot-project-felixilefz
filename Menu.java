@@ -8,7 +8,7 @@ public class Menu extends Actor
         GreenfootImage image = new GreenfootImage("images/ui/menu/menu_background.png");
         image.scale(width, height);
         setImage(image);
-        itemOffSet = 30;
+        itemOffSet = 25;
     }
     
     public void addItem(Actor actor, double scale) {

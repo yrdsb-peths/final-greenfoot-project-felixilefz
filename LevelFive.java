@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Write a description of class LevelFive here.
+ * Write a description of class LevelFour here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -12,32 +12,33 @@ public class LevelFive extends GameWorld
     // The dimensions of the level. Not including outer walls
     private static String wallVertical = "images/tiles/walls/wall_vertical.png";
     private static TileObject[][] floorPlan = {
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Water(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
+        {null, null, null, null, null, null, null, null},
+        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Water()},
+        {null, null, null, null, new Ice(), null, null, null},
+        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Water()},
+        {null, null, null, null, null, null, null, null}
     };
     private static TileObject[][] blockPlan = {
-        {new Player(), new Water(), new Wall(), null, null, null, null, null, new Wall()},
-        {null, null, null, null, null, null, null, null, null},
-        {null, new PushBlock(), null, null, null, new Wall(), null, null, null},
-        {new PushBlock(), null, null, null, null, null, null, null, null},
-        {null, null, null, null, new Finish(), new Wall(), null, null, null},
-        {null, new Wall(), null, null, null, null, null, null, new Wall()}
+        {null, null, null, new Wall(), new Wall(), new Wall(), new Finish(), new Wall()},
+        {null, null, new PushBlock(), null, null, null, null, null},
+        {new Player(), null, new Wall(), new Wall(), null, new Wall(), new Wall(), new Wall()},
+        {null, null, new PushBlock(), null, null, null, null, null},
+        {null, null, null, new Wall(), new Wall(), new Wall(), new Finish(), new Wall()}
     };
     
     public LevelFive()
     {
-        super(floorPlan, blockPlan, 4);
+        super(floorPlan, blockPlan, 5);
+        
+        
+        
     }
     
     public int getOwnerTime() {
-        return 15000;
+        return 8000;
     }
     
     public int getOwnerMoves() {
-        return 15;
+        return 21;
     }
 }
