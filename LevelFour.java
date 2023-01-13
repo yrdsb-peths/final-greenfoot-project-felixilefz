@@ -20,7 +20,7 @@ public class LevelFour extends GameWorld
         {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
     };
     private static TileObject[][] blockPlan = {
-        {new Player(), new Water(), new Wall(), null, null, null, new Wall(), null, new Wall()},
+        {new Player(), new Water(), new Wall(), null, new Wall(), null, null, null, new Wall()},
         {null, null, null, null, null, null, null, null, null},
         {null, new PushBlock(), null, null, null, new Wall(), null, null, null},
         {new PushBlock(), null, null, null, null, null, null, null, null},
@@ -37,7 +37,7 @@ public class LevelFour extends GameWorld
     }
     
     public int getOwnerTime() {
-        return 15000;
+        return 12000;
     }
     
     public int getOwnerMoves() {
