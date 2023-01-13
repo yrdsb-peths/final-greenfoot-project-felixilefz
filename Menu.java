@@ -26,6 +26,6 @@ public class Menu extends Actor
         }
         
         world.addObject(actor, getX(), getY() - getImage().getHeight()/2 + itemOffSet);
-        itemOffSet += actor.getImage().getHeight() + 0;
+        itemOffSet += actor.getImage().getHeight() + 5;
     }
 }

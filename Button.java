@@ -10,7 +10,7 @@ public class Button extends Actor
 {
     private boolean hover = false;
     private boolean mouseDown = false;
-    private GreenfootImage[] imageStates;
+    protected GreenfootImage[] imageStates;
     // This entire class is a work in progess
     
     public Button(String imagePath, int numStates) {
@@ -62,7 +62,6 @@ public class Button extends Actor
     public void setScale(int width, int height) {
         for (int i = 0; i < imageStates.length; i++) {
             imageStates[i].scale(width, height);
-            
         }
     }
     

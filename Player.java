@@ -12,7 +12,7 @@ public class Player extends TileObject
     SimpleTimer controlTimer = new SimpleTimer();
     boolean tweening = false;
     boolean canMove = true;
-    
+        
     // Not used yet
     public Player(int scale, int x, int y) {
         super(new GreenfootImage("images/player.png"), scale, x , y);
@@ -30,11 +30,11 @@ public class Player extends TileObject
     
     public void act()
     {
-        // Add your action code here.
+        GameWorld world = (GameWorld) getWorld();
         if (tweening || !canMove) {
             return;
         }
-        GameWorld world = (GameWorld) getWorld();
+        
         if (controlTimer.millisElapsed() > 200) {
             
             if (Greenfoot.isKeyDown("d")) {
@@ -57,6 +57,8 @@ public class Player extends TileObject
                 controlTimer.mark();
                 world.undoMove();
                 
+            } else if (Greenfoot.isKeyDown("escape")) {
+                world.pauseLevel();
             }
         }
         super.act();
@@ -127,8 +129,7 @@ public class Player extends TileObject
         }
         
         if (floor instanceof Water) {
-            // death
-            System.out.println("dead");
+            world.lostLevel();
         }
         
         tween(newX+dx, newY+dy);

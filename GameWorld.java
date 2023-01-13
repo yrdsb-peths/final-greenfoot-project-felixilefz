@@ -9,14 +9,16 @@ import java.util.*;
  */
 public class GameWorld extends World
 {
-    int scale;
-    int width;
-    int height;
-    TileObject[][] floorGrid; 
-    TileObject[][] blockGrid;
-    Stack<TileObject[][]> previousMoves = new Stack<>();
-    Player plr;
-    int level;
+    private static int highestCompletedLevel = 0;
+    private int scale;
+    private int width;
+    private int height;
+    private TileObject[][] floorGrid; 
+    private TileObject[][] blockGrid;
+    private Stack<TileObject[][]> previousMoves = new Stack<>();
+    private ArrayList<Actor> menuAssets = new ArrayList<>();
+    private Player plr;
+    private int level;
     
     public GameWorld(TileObject[][] floorPlan, TileObject[][] blockPlan, int level)
     {    
@@ -75,6 +77,7 @@ public class GameWorld extends World
        
     }
     
+    // Undo related methods
     public void playerMoved() {
         int prevMovesSize = previousMoves.size();
         
@@ -99,6 +102,7 @@ public class GameWorld extends World
     }
     
     public void removeUndo() {
+        // Is needed because of how ice works
         previousMoves.pop();
         previousMoves.pop();
     }
@@ -109,8 +113,6 @@ public class GameWorld extends World
         }
         TileObject[][] oldBlockGrid = previousMoves.pop();
         TileObject[][] oldFloorGrid = previousMoves.pop();
-        
-        
         
         for (int i = 0; i < floorGrid.length; i++) {
             for (int j= 0; j < floorGrid[0].length; j++) {
@@ -134,21 +136,83 @@ public class GameWorld extends World
         }
     }
     
+    // Menu related methods
     public void finishLevel() {
         TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton nextLevel = new TravelButton(level+1, "images/ui/buttons/next_level", 3);
+        TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
         ActorImage victory = new ActorImage(new GreenfootImage("images/ui/menu/victory.png"));
+        
         Menu menu = new Menu(400, 350);
         addObject(menu, getWidth()/2, getHeight()/2);
         plr.movementOff();
-        menu.addItem(victory, 0.85);
-        menu.addItem(levelSelect, 0.6);
+        menu.addItem(victory, 0.8);
+        menu.addItem(nextLevel, 0.5);
+        menu.addItem(levelSelect, 0.5);
+        menu.addItem(restart, 0.5);
+        menuAssets.add(levelSelect);
+        menuAssets.add(nextLevel);
+        menuAssets.add(restart);
+        menuAssets.add(victory);
+        menuAssets.add(menu);
+        
+        if (highestCompletedLevel < level) {
+            highestCompletedLevel = level;
+        }
     }
     
     public void lostLevel() {
+        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
+        UndoButton undo = new UndoButton("images/ui/buttons/undo_move", 3);
+        ActorImage dead = new ActorImage(new GreenfootImage("images/ui/menu/dead.png"));
+        
+        Menu menu = new Menu(400, 350);
+        addObject(menu, getWidth()/2, getHeight()/2);
+        plr.movementOff();
+        menu.addItem(dead, 0.8);
+        menu.addItem(undo, 0.5);
+        menu.addItem(levelSelect, 0.5);
+        menu.addItem(restart, 0.5);
+        menuAssets.add(levelSelect);
+        menuAssets.add(undo);
+        menuAssets.add(restart);
+        menuAssets.add(dead);
+        menuAssets.add(menu);
+    }
+    
+    public void pauseLevel() {
+        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
+        BackButton backToLevel = new BackButton("images/ui/buttons/back_to_level", 3);
+        ActorImage pause = new ActorImage(new GreenfootImage("images/ui/menu/paused.png"));
+        
+        Menu menu = new Menu(400, 350);
+        addObject(menu, getWidth()/2, getHeight()/2);
+        plr.movementOff();
+        menu.addItem(pause, 0.8);
+        menu.addItem(levelSelect, 0.5);
+        menu.addItem(restart, 0.5);
+        menu.addItem(backToLevel, 0.5);
+        menuAssets.add(levelSelect);
+        menuAssets.add(restart);
+        menuAssets.add(pause);
+        menuAssets.add(menu);
+        menuAssets.add(backToLevel);
+    }
+    
+    public void removeMenuAssets() {
+        for (int i = 0; i < menuAssets.size(); i++) {
+            removeObject(menuAssets.get(i));
+        }
         plr.movementOn();
     }
     
     //Getters and Setters
+    
+    public static int getHighestLevel() {
+        return highestCompletedLevel;
+    }
     
     public int getGridWidth() {
         return width;
