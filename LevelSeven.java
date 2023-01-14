@@ -30,7 +30,7 @@ public class LevelSeven extends GameWorld
     
     public LevelSeven()
     {
-        super(floorPlan, blockPlan, 3);
+        super(floorPlan, blockPlan, 7);
     }
     
     public int getOwnerTime() {

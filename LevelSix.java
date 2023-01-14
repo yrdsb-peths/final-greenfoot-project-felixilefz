@@ -12,20 +12,16 @@ public class LevelSix extends GameWorld
     // The dimensions of the level. Not including outer walls
     private static String wallVertical = "images/tiles/walls/wall_vertical.png";
     private static TileObject[][] floorPlan = {
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Water(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null}
     };
     private static TileObject[][] blockPlan = {
-        {new Player(), new Water(), new Wall(), null, null, null, null, null, new Wall()},
-        {null, null, null, null, null, null, null, null, null},
-        {null, new PushBlock(), null, null, null, new Wall(), null, null, null},
-        {new PushBlock(), null, null, null, null, null, null, null, null},
-        {null, null, null, null, new Finish(), new Wall(), null, null, null},
-        {null, new Wall(), null, null, null, null, null, null, new Wall()}
+        {new Player(), null, null, null, null, null},
+        {null, new PushBlock(), new Dynamite(), new Wall(), new Wall(), null},
+        {null, null, null, new Wall(), new Wall(), null},
+        {null, null, null, null, null, null}
     };
     
     public LevelSix()

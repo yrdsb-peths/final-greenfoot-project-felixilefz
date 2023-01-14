@@ -33,7 +33,13 @@ public class TravelButton extends Button
             Greenfoot.setWorld(new LevelFour());
         } else if (level == 5) {
             Greenfoot.setWorld(new LevelFive());
-        }        
+        } else if (level == 6) {
+            Greenfoot.setWorld(new LevelSix());
+        } else if (level == 7) {
+            Greenfoot.setWorld(new LevelSeven());
+        } else if (level == 8) {
+            Greenfoot.setWorld(new LevelEight());
+        } 
         
         
     }

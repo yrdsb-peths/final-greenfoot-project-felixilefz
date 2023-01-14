@@ -30,7 +30,7 @@ public class LevelEight extends GameWorld
     
     public LevelEight()
     {
-        super(floorPlan, blockPlan, 4);
+        super(floorPlan, blockPlan, 8);
         
         
         
