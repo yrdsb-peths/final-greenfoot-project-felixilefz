@@ -8,6 +8,7 @@ public class TileObject extends Actor
     int scale;
     int x;
     int y;
+    GameWorld world;
     
     // Not used Currently, may be used later
     public TileObject(GreenfootImage image, int scale, int x, int y) {
@@ -22,9 +23,8 @@ public class TileObject extends Actor
         
     }
     
-    public void act() 
-    {
-       
+    public void addedToWorld(World world) {
+        this.world = (GameWorld) world;
     }
     
     public void setX(int newX) {

@@ -8,10 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Dynamite extends PushBlock
 {
+    
+    
     public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
-            explode(dx, dy);
+            world.removeBlock(x, y);
+            world.removeObject(this);
+            explode(0, 0);
             return true;
         }
         
@@ -24,12 +28,12 @@ public class Dynamite extends PushBlock
         }
         
         if (block instanceof Wall) {
+            world.removeBlock(x, y);
+            world.removeObject(this);
             explode(dx, dy);
-            //world.removeBlock(x, y);
             //world.removeBlock(x+dx, y+dy);            
             
             //world.removeObject(block);
-            //world.removeObject(this);
             return true;
         }
         
@@ -51,12 +55,12 @@ public class Dynamite extends PushBlock
             
         if (block instanceof PushBlock) {
             if (!((PushBlock)block).push(dx, dy)) {
+                world.removeBlock(x, y);
+                world.removeObject(this);
                 explode(dx, dy);
-                //world.removeBlock(x, y);
                 //world.removeBlock(x+dx, y+dy);            
             
                 //world.removeObject(block);
-                //world.removeObject(this);
                 return true;
             }
         }
@@ -125,16 +129,22 @@ public class Dynamite extends PushBlock
     
     // Destory everything, including the player, in a 3x3 box
     private void explode(int dx, int dy) {
-        GameWorld world = (GameWorld) getWorld();
         // Uses a for loop to easily change the explosion area
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
+                
+                if (i + dx == 0 && j + dy == 0) {
+                    continue;
+                }
                 if (x+i+dx >= 0 && x+i+dx < world.getGridWidth() && y+j+dy >= 0 && y+j+dy < world.getGridHeight()) {
                     TileObject block = world.getBlockAt(x+i+dx, y+j+dy);
                     System.out.println(i + " " + j);
                     
                     if (block instanceof Player) {
                         world.lostLevel();
+                    }
+                    if (block instanceof Dynamite) {
+                        ((Dynamite) block).explode(0, 0);
                     }
                     world.removeBlock(x+i+dx, y+j+dy);
                     world.removeObject(block);

@@ -20,7 +20,7 @@ public class LevelSix extends GameWorld
     private static TileObject[][] blockPlan = {
         {new Player(), null, null, null, null, null},
         {null, new PushBlock(), new Dynamite(), new Wall(), new Wall(), null},
-        {null, null, null, new Wall(), new Wall(), null},
+        {null, null, new Dynamite(), new Wall(), new Wall(), null},
         {null, null, null, null, null, null}
     };
     
