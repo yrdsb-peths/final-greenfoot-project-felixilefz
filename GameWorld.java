@@ -43,7 +43,7 @@ public class GameWorld extends World
         totalMoves = 0;
         totalTime = 0;
         
-        scale = Math.min(600 / (width), 400 / (height)); 
+        scale = Math.min(getWidth() / (width), getHeight() / (height)); 
         
         createBase();
         setPaintOrder(ActorImage.class, Button.class, Label.class, Menu.class, PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);

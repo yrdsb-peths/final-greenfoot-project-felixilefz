@@ -8,10 +8,11 @@ import java.util.List;
  */
 public class Player extends TileObject
 {
-    int scale;
+
     SimpleTimer controlTimer = new SimpleTimer();
     boolean tweening = false;
     boolean canMove = true;
+    
         
     // Not used yet
     public Player(int scale, int x, int y) {

@@ -13,8 +13,7 @@ public class Dynamite extends PushBlock
     public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
-            world.removeBlock(x, y);
-            world.removeObject(this);
+            
             explode(0, 0);
             return true;
         }
@@ -28,8 +27,7 @@ public class Dynamite extends PushBlock
         }
         
         if (block instanceof Wall) {
-            world.removeBlock(x, y);
-            world.removeObject(this);
+
             explode(dx, dy);
             //world.removeBlock(x+dx, y+dy);            
             
@@ -55,8 +53,7 @@ public class Dynamite extends PushBlock
             
         if (block instanceof PushBlock) {
             if (!((PushBlock)block).push(dx, dy)) {
-                world.removeBlock(x, y);
-                world.removeObject(this);
+
                 explode(dx, dy);
                 //world.removeBlock(x+dx, y+dy);            
             
@@ -129,6 +126,8 @@ public class Dynamite extends PushBlock
     
     // Destory everything, including the player, in a 3x3 box
     private void explode(int dx, int dy) {
+        world.removeBlock(x, y);
+        world.removeObject(this);
         // Uses a for loop to easily change the explosion area
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {

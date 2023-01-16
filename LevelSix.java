@@ -12,16 +12,22 @@ public class LevelSix extends GameWorld
     // The dimensions of the level. Not including outer walls
     private static String wallVertical = "images/tiles/walls/wall_vertical.png";
     private static TileObject[][] floorPlan = {
-        {null, null, null, null, null, null},
-        {null, null, null, null, null, null},
-        {null, null, null, null, null, null},
-        {null, null, null, null, null, null}
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, new Water(), null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null}
     };
     private static TileObject[][] blockPlan = {
-        {new Player(), null, null, null, null, null},
-        {null, new PushBlock(), new Dynamite(), new Wall(), new Wall(), null},
-        {null, null, new Dynamite(), new Wall(), new Wall(), null},
-        {null, null, null, null, null, null}
+        {new Wall(), new Dynamite(), null, new Dynamite(), new Dynamite(), new Wall(), new Wall(), new Dynamite(), null, null, null},
+        {new Dynamite(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Dynamite(), new Wall(), new Dynamite(), new PushBlock(), null, null},
+        {null, new Dynamite(), new Player(), new Dynamite(), new Wall(), new Wall(), new Wall(), new Dynamite(), null, new Wall(), new Wall()},
+        {new Dynamite(), new Wall(), null, null, null, new Wall(), new Wall(), new Dynamite(), null, new Wall(), new Finish()},
+        {new Dynamite(), new Wall(), new Dynamite(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Dynamite(), null, new Wall(), new Wall()},
+        {new Dynamite(), new Wall(), null, new Wall(), null, null, new Wall(), new Dynamite(), new Bomb(), null, null},
+        {null, new Dynamite(), null, new Dynamite(), new Dynamite(), new Dynamite(), new Dynamite(), new Wall(), null, null, null}
     };
     
     public LevelSix()

@@ -27,7 +27,7 @@ public class LevelSelect extends World
         super(600, 400, 1); 
         int x = BUTTON_PADDING; // Starting number is the distance between edge and the button on a new row
         int y = 100; // same thing as above
-        int spacing = (600 - BUTTON_PADDING * 2) / (BUTTONS_PER_ROW-1);
+        int spacing = (getWidth() - BUTTON_PADDING * 2) / (BUTTONS_PER_ROW-1);
         int totalRows = LEVEL_COUNT / BUTTONS_PER_ROW;
         
         for (int i = 0; i < totalRows; i++) {

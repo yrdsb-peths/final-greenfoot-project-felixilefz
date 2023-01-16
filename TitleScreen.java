@@ -19,7 +19,7 @@ public class TitleScreen extends World
         super(600, 400, 1);
         TravelButton playButton = new TravelButton(0, "images/ui/buttons/play_button", 3);
         TravelButton settingsButton = new TravelButton(0, "images/ui/buttons/game_setting", 3);
-        TravelButton infoHelpButton = new TravelButton(0, "images/ui/buttons/info_help", 3);
+        TravelButton infoHelpButton = new TravelButton(-1, "images/ui/buttons/info_help", 3);
         playButton.setScale(192, 64);
         settingsButton.setScale(192, 64);
         infoHelpButton.setScale(192, 64);
