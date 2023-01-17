@@ -275,6 +275,7 @@ public class GameWorld extends World
         floorGrid[y][x] = floor;
     }
     
+    // These are base times if for some reason there is none in any on the child class
     public int getOwnerTime() {
         return 1000000;
     }

@@ -46,5 +46,8 @@ public class LevelSelect extends World
                 x += spacing;
             }
         }
+        
+        
+        addObject(new TravelButton(-2, 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
     }
 }
