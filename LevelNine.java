@@ -32,7 +32,7 @@ public class LevelNine extends GameWorld
     
     public LevelNine()
     {
-        super(floorPlan, blockPlan, 6);
+        super(floorPlan, blockPlan, 9);
     }
     
     public int getOwnerTime() {
