@@ -145,6 +145,8 @@ public class Dynamite extends PushBlock
                     if (block instanceof Dynamite) {
                         ((Dynamite) block).explode(0, 0);
                     }
+                    
+                    
                     world.removeBlock(x+i+dx, y+j+dy);
                     world.removeObject(block);
                 }
