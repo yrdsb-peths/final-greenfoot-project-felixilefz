@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class GameWorld extends World
 {
+    private static GreenfootSound winEffect = new GreenfootSound("sounds/win_sound.mp3");
     private static int highestCompletedLevel = 0;
     private int scale;
     private int width;
@@ -146,6 +147,8 @@ public class GameWorld extends World
     
     // Menu related methods
     public void finishLevel() {
+        winEffect.play();
+        
         TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton nextLevel = new TravelButton(level+1, "images/ui/buttons/next_level", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);

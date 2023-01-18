@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Button extends Actor
 {
+    private static GreenfootSound clickEffect = new GreenfootSound("sounds/click_sound.mp3");
     private boolean hover = false;
     private boolean mouseDown = false;
     protected GreenfootImage[] imageStates;
@@ -51,6 +52,7 @@ public class Button extends Actor
         }
                                                                                                                                                                                                                                                                        
         if (Greenfoot.mouseClicked(this) && mouseDown) {
+            clickEffect.play();
             action();
             mouseDown = false;
             setImage(imageStates[0]);

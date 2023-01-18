@@ -25,11 +25,11 @@ public class LevelSelect extends World
         addObject(new TravelButton(0, 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
         
         if (getPrev() != null) {
-            addObject(new TravelButton(getPrev(), 40, 40, "images/ui/buttons/level_button1", 3), 30, getHeight()/2);
+            addObject(new TravelButton(getPrev(), 40, 40, "images/ui/buttons/prev_world", 3), 30, getHeight()/2);
         }
         
         if (getNext() != null) {
-            addObject(new TravelButton(getNext(), 40, 40, "images/ui/buttons/level_button2", 3), getWidth()-30, getHeight()/2);
+            addObject(new TravelButton(getNext(), 40, 40, "images/ui/buttons/next_world", 3), getWidth()-30, getHeight()/2);
         }
         
         int x = BUTTON_PADDING; // Starting number is the distance between edge and the button on a new row

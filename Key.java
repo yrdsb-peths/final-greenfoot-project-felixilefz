@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Key extends PushBlock
 {
     
+    public static GreenfootSound soundEffect = new GreenfootSound("sounds/open_door_sound.mp3");
+    
     public void act()
     {
         
@@ -24,6 +26,7 @@ public class Key extends PushBlock
         
         
         if (block instanceof Door) {
+            soundEffect.play();
             world.removeBlock(x, y);
             world.removeBlock(x+dx, y+dy);
             
@@ -53,15 +56,13 @@ public class Key extends PushBlock
         
         if (floor instanceof Water) {
             world.removeBlock(x, y);
-            
+            splashSound.play();
             Floor newFloor = new Floor();
             world.addObject(newFloor, 0, 0);
             newFloor.setX(x + dx);
             newFloor.setY(y + dy);
             newFloor.setScale(scale);
             world.replaceFloor(x+dx, y+dy, newFloor);
-            
-            
             world.removeObject(floor);
             world.removeObject(this);
             return true;
@@ -99,6 +100,7 @@ public class Key extends PushBlock
         }
         
         if (floor instanceof Water) {
+            splashSound.play();
             Floor newFloor = new Floor();
             world.addObject(newFloor, 0, 0);
             newFloor.setX(newX + dx);

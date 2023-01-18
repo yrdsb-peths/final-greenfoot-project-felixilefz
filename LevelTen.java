@@ -12,22 +12,22 @@ public class LevelTen extends GameWorld
     // The dimensions of the level. Not including outer walls
     private static String wallVertical = "images/tiles/walls/wall_vertical.png";
     private static TileObject[][] floorPlan = {
-        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()},
-        {null, null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice()}
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, null, null, null, null, null, null, null}
     };
     private static TileObject[][] blockPlan = {
-        {null, new Player(), null, new Wall(), null, null, null, null, null, null, null},
-        {null, null, null,  new Wall(), null, null, null, null, null, null, null},
-        {null, new Key(), null, null, new Wall(), new Door(), new Wall(), null, null, null, null},
-        {null, new Bomb(), null, null, new Wall(), new Finish(), new Wall(), null, null, null, null},
-        {null, new PushBlock(), null, null, null, new Wall(), new Wall(), null, null, null, null},
-        {null, new PushBlock(), null, null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null, null, null, null}
+        {new Player(), null, null, new StrongWall(), new Finish(), new Wall(), null, null, null, null, null},
+        {null, null, null, new StrongWall(), null, new StrongWall(), null, null, null, null, null},
+        {null, null, null, new StrongWall(), new Dynamite(), new StrongWall(), null, null, null, null, null},
+        {null, new Dynamite(), null, null, null, new StrongDoor(), new Key(), null, new Key(), null, new StrongDoor()},
+        {null, null, null, new StrongWall(), null, new StrongWall(), null, null, null, new Wall(), new StrongDoor()},
+        {null, null, null, new StrongWall(), null, new StrongWall(), null, null, null, new Wall(), new StrongDoor()},
+        {null, null, null, null, null, new StrongWall(), null, null, null, new Wall(), new Finish()}
     };
     
     public LevelTen()
@@ -36,11 +36,10 @@ public class LevelTen extends GameWorld
     }
     
     public int getOwnerTime() {
-        return 30000;
+        return 16000;
     }
     
     public int getOwnerMoves() {
-        return 51;
+        return 46;
     }
-    
 }

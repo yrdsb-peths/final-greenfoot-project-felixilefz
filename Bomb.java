@@ -12,6 +12,9 @@ public class Bomb extends PushBlock
      * Act - do whatever the Bomb wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    public static GreenfootSound soundEffect = new GreenfootSound("sounds/explosion_sound.mp3");
+    
     public void act()
     {
         // Add your action code here.
@@ -21,6 +24,7 @@ public class Bomb extends PushBlock
         GameWorld world = (GameWorld) getWorld();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
             world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),x*scale+scale/2, y*scale+scale/2);
+            soundEffect.play();
             world.removeBlock(x, y);
             world.removeObject(this);
             return true;
@@ -29,12 +33,17 @@ public class Bomb extends PushBlock
         TileObject floor = world.getFloorAt(x+dx, y+dy);
         TileObject block = world.getBlockAt(x+dx, y+dy);
         
-        
-        if (block instanceof Finish) {
-            return false;
+        if (block instanceof StrongWall || block instanceof StrongDoor) {
+            soundEffect.play();
+            world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),x*scale+scale/2, y*scale+scale/2);
+            world.removeBlock(x, y);
+            world.removeObject(this);
+            return true;
         }
         
-        if (block instanceof Wall) {
+        
+        if (block instanceof Wall || block instanceof Finish) {
+            soundEffect.play();
             world.removeBlock(x, y);
             world.removeBlock(x+dx, y+dy);            
             world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),(x+dx)*scale+scale/2, (y+dy)*scale+scale/2);
@@ -44,16 +53,14 @@ public class Bomb extends PushBlock
         }
         
         if (floor instanceof Water) {
+            splashSound.play();
             world.removeBlock(x, y);
-            
             Floor newFloor = new Floor();
             world.addObject(newFloor, 0, 0);
             newFloor.setX(x + dx);
             newFloor.setY(y + dy);
             newFloor.setScale(scale);
             world.replaceFloor(x+dx, y+dy, newFloor);
-            
-            
             world.removeObject(floor);
             world.removeObject(this);
             return true;
@@ -61,6 +68,7 @@ public class Bomb extends PushBlock
             
         if (block instanceof PushBlock) {
             if (!((PushBlock)block).push(dx, dy)) {
+                soundEffect.play();
                 world.removeBlock(x, y);
                 world.removeBlock(x+dx, y+dy);            
                 world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),(x+dx)*scale+scale/2, (y+dy)*scale+scale/2);
@@ -107,6 +115,7 @@ public class Bomb extends PushBlock
         }
         
         if (floor instanceof Water) {
+            splashSound.play();
             Floor newFloor = new Floor();
             world.addObject(newFloor, 0, 0);
             newFloor.setX(newX + dx);

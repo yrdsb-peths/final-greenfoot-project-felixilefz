@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PushBlock extends TileObject
 {
+    public static GreenfootSound splashSound = new GreenfootSound("sounds/splash_sound.mp3");
     
     public PushBlock() {
         
@@ -44,7 +45,7 @@ public class PushBlock extends TileObject
         
         if (floor instanceof Water) {
             world.removeBlock(x, y);
-            
+            splashSound.play();
             Floor newFloor = new Floor();
             world.addObject(newFloor, 0, 0);
             newFloor.setX(x + dx);

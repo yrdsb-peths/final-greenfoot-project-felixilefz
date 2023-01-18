@@ -39,6 +39,6 @@ public class LevelNine extends GameWorld
     }
     
     public int getOwnerMoves() {
-        return 28;
+        return 26;
     }
 }

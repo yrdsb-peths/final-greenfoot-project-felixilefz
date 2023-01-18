@@ -13,6 +13,7 @@ public class Player extends TileObject
     boolean tweening = false;
     boolean canMove = true;
     
+    public static GreenfootSound splashSound = new GreenfootSound("sounds/splash_sound.mp3");
         
     // Not used yet
     public Player(int scale, int x, int y) {
@@ -133,6 +134,7 @@ public class Player extends TileObject
         }
         
         if (floor instanceof Water) {
+            splashSound.play();
             world.lostLevel();
         }
         
