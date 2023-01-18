@@ -20,6 +20,7 @@ public class Bomb extends PushBlock
     public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
+            world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),x*scale+scale/2, y*scale+scale/2);
             world.removeBlock(x, y);
             world.removeObject(this);
             return true;
@@ -36,7 +37,7 @@ public class Bomb extends PushBlock
         if (block instanceof Wall) {
             world.removeBlock(x, y);
             world.removeBlock(x+dx, y+dy);            
-            
+            world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),(x+dx)*scale+scale/2, (y+dy)*scale+scale/2);
             world.removeObject(block);
             world.removeObject(this);
             return true;
@@ -62,7 +63,7 @@ public class Bomb extends PushBlock
             if (!((PushBlock)block).push(dx, dy)) {
                 world.removeBlock(x, y);
                 world.removeBlock(x+dx, y+dy);            
-            
+                world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),(x+dx)*scale+scale/2, (y+dy)*scale+scale/2);
                 world.removeObject(block);
                 world.removeObject(this);
                 return true;

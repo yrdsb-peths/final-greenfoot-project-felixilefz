@@ -19,7 +19,6 @@ public class Particles extends Actor
         this.duration = duration;
         time = 0;
         animationNumber = 0;
-        
         for (int i = 0; i < images.size(); i++) {
             images.get(i).scale(width, height);
         }
@@ -27,8 +26,9 @@ public class Particles extends Actor
     }
     
     public void act() {
+        GameWorld world = (GameWorld) getWorld();
         if (time >= duration) {
-            // destory this object
+            world.removeObject(this);
         }
         
         if (time % 20 == 0) {

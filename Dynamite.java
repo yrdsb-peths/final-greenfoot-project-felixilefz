@@ -55,9 +55,6 @@ public class Dynamite extends PushBlock
             if (!((PushBlock)block).push(dx, dy)) {
 
                 explode(dx, dy);
-                //world.removeBlock(x+dx, y+dy);            
-            
-                //world.removeObject(block);
                 return true;
             }
         }
@@ -131,13 +128,10 @@ public class Dynamite extends PushBlock
         // Uses a for loop to easily change the explosion area
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
+                world.addObject(new Particles(50, "images/particles/fire.gif", scale, scale),(x+i+dx)*scale+scale/2, (y+j+dy)*scale+scale/2);
                 
-                if (i + dx == 0 && j + dy == 0) {
-                    continue;
-                }
                 if (x+i+dx >= 0 && x+i+dx < world.getGridWidth() && y+j+dy >= 0 && y+j+dy < world.getGridHeight()) {
                     TileObject block = world.getBlockAt(x+i+dx, y+j+dy);
-                    System.out.println(i + " " + j);
                     
                     if (block instanceof Player) {
                         world.lostLevel();
@@ -152,6 +146,5 @@ public class Dynamite extends PushBlock
                 }
             }
         }
-        System.out.println("");
     }
 }

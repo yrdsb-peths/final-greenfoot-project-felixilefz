@@ -46,7 +46,7 @@ public class GameWorld extends World
         scale = Math.min(getWidth() / (width), getHeight() / (height)); 
         
         createBase();
-        setPaintOrder(ActorImage.class, Button.class, Label.class, Menu.class, PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);
+        setPaintOrder(ActorImage.class, Button.class, Label.class, Menu.class, Player.class, Particles.class, PushBlock.class, Wall.class, Finish.class, Water.class, Floor.class);
         
     }
     
@@ -145,7 +145,7 @@ public class GameWorld extends World
     
     // Menu related methods
     public void finishLevel() {
-        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton nextLevel = new TravelButton(level+1, "images/ui/buttons/next_level", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
         ActorImage victory = new ActorImage(new GreenfootImage("images/ui/menu/victory.png"));
@@ -187,7 +187,7 @@ public class GameWorld extends World
     }
     
     public void lostLevel() {
-        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
         UndoButton undo = new UndoButton("images/ui/buttons/undo_move", 3);
         ActorImage dead = new ActorImage(new GreenfootImage("images/ui/menu/dead.png"));
@@ -208,7 +208,7 @@ public class GameWorld extends World
     }
     
     public void pauseLevel() {
-        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
         BackButton backToLevel = new BackButton("images/ui/buttons/back_to_level", 3);
         ActorImage pause = new ActorImage(new GreenfootImage("images/ui/menu/paused.png"));

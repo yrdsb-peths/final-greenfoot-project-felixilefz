@@ -15,7 +15,6 @@ public class Key extends PushBlock
     }
     
     public boolean checkSpot(int dx, int dy) {
-        GameWorld world = (GameWorld) getWorld();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
             return false;
         }
@@ -68,7 +67,9 @@ public class Key extends PushBlock
             return true;
         }
             
-        
+        if (getWorld() == null) {
+            return true;
+        }
         
         world.removeBlock(x, y);
         setX(x+dx);

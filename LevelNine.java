@@ -9,25 +9,24 @@ import java.lang.Math.*;
  */
 public class LevelNine extends GameWorld
 {
-    // The dimensions of the level. Not including outer walls
-    private static String wallVertical = "images/tiles/walls/wall_vertical.png";
+    
     private static TileObject[][] floorPlan = {
         {null, null, null, null, null, null, null, null, null, null, null},
         {null, null, null, null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null, null, null, null},
+        {null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Water(), null},
+        {null, null, new Water(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), null},
+        {null, null, new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), new Ice(), null},
         {null, null, null, null, null, null, null, null, null, null, null},
         {null, null, null, null, null, null, null, null, null, null, null}
     };
     private static TileObject[][] blockPlan = {
-        {new Wall(), new Dynamite(), null, new Dynamite(), new Dynamite(), new Wall(), new Wall(), new Dynamite(), new Wall(), null, null},
-        {new Dynamite(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Dynamite(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Wall()},
-        {null, new Dynamite(), new Player(), new Dynamite(), new Wall(), new Wall(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Wall()},
-        {new Dynamite(), new Wall(), null, null, null, new Wall(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Finish()},
-        {new Dynamite(), new Wall(), new Dynamite(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Dynamite(), new Wall(), new Wall(), new Wall()},
-        {new Dynamite(), new Wall(), null, new Wall(), null, null, new Wall(), new Dynamite(), new Bomb(), new Wall(), new Wall()},
-        {null, new Dynamite(), null, new Dynamite(), new Dynamite(), new Dynamite(), new Dynamite(), new Wall(), new Wall(), null, null}
+        {new Player(), null, null, null, null, null, null, null, null, null, null},
+        {null, null, null, null, new Dynamite(), null, null, null, null, new Wall(), new Wall()},
+        {null, null, null, null, null, null, null, null, null, null, new Wall()},
+        {null, new Wall(), null, null, new Key(), null, null, null, null, null, new Door()},
+        {null, null, null, null, null, null, null, null, null, new Wall(), new Finish()},
+        {null, null, null, null, null, null, null, null, null, new Wall(), new Wall()},
+        {null, null, null, null, null, null, null, null, null, null, null}
     };
     
     public LevelNine()
@@ -40,6 +39,6 @@ public class LevelNine extends GameWorld
     }
     
     public int getOwnerMoves() {
-        return 23;
+        return 28;
     }
 }
