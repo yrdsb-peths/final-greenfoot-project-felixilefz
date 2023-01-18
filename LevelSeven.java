@@ -2,12 +2,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Write a description of class LevelThree here.
+ * Write a description of class LevelFour here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class LevelThree extends GameWorld
+public class LevelSeven extends GameWorld
 {
     // The dimensions of the level. Not including outer walls
     private static String wallVertical = "images/tiles/walls/wall_vertical.png";
@@ -15,21 +15,18 @@ public class LevelThree extends GameWorld
         {null, null, null, null, null, null},
         {null, null, null, null, null, null},
         {null, null, null, null, null, null},
-        {null, null, null, null, null, null}
+        {null, null, null, null, null, null},
     };
     private static TileObject[][] blockPlan = {
-        {new Player(), null, null, new Door(), new Wall(), new Finish()},
-        {null, new Key(), null, new Door(), new Wall(), null},
-        {null, new Bomb(), null, new Door(), new Wall(), null},
-        {null, null, null, new Door(), new Wall(), null}
+        {new Player(), null, new Wall(), new Dynamite(), new Dynamite(), new Finish()},
+        {null, new Dynamite(), new Wall(), null, new Wall(), null},
+        {null, null, new Wall(), new Dynamite(), new Wall(), null},
+        {null, null, new Wall(), null, new Wall(), null},
     };
     
-    public LevelThree()
+    public LevelSeven()
     {
-        super(floorPlan, blockPlan, 3);
-        
-        
-        
+        super(floorPlan, blockPlan, 7);
     }
     
     public int getOwnerTime() {
@@ -37,6 +34,6 @@ public class LevelThree extends GameWorld
     }
     
     public int getOwnerMoves() {
-        return 15;
+        return 13;
     }
 }

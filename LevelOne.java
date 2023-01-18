@@ -27,8 +27,17 @@ public class LevelOne extends GameWorld
     public LevelOne()
     {
         super(floorPlan, blockPlan, 1);
-        
-        
-        
+    }
+    
+    // Getters
+    
+    // These are to calculate the grade you get after you finish the level
+    // These are based on my times
+    public int getOwnerTime() {
+        return 2500;
+    }
+    
+    public int getOwnerMoves() {
+        return 7;
     }
 }

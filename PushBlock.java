@@ -8,10 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PushBlock extends TileObject
 {
-
+    
     public PushBlock() {
         
     }
+    
+    
     
     public void act() 
     {
@@ -20,7 +22,6 @@ public class PushBlock extends TileObject
     }
     
     public boolean push(int dx, int dy) {
-        GameWorld world = (GameWorld) getWorld();
         if (!checkSpot(dx, dy)) {
             return false;
         }
@@ -29,7 +30,6 @@ public class PushBlock extends TileObject
     }
     
     public boolean checkSpot(int dx, int dy) {
-        GameWorld world = (GameWorld) getWorld();
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
             return false;
         }

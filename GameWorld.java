@@ -19,6 +19,9 @@ public class GameWorld extends World
     private ArrayList<Actor> menuAssets = new ArrayList<>();
     private Player plr;
     private int level;
+    private SimpleTimer gameTimer;
+    private int totalMoves;
+    private int totalTime;
     
     public GameWorld(TileObject[][] floorPlan, TileObject[][] blockPlan, int level)
     {    
@@ -36,11 +39,14 @@ public class GameWorld extends World
             }
         }
         
+        gameTimer = new SimpleTimer();
+        totalMoves = 0;
+        totalTime = 0;
         
-        scale = Math.min(600 / (width), 400 / (height)); 
+        scale = Math.min(getWidth() / (width), getHeight() / (height)); 
         
         createBase();
-        setPaintOrder(ActorImage.class, Button.class, Menu.class, PushBlock.class, Wall.class, Player.class, Finish.class, Water.class, Floor.class);
+        setPaintOrder(ActorImage.class, Button.class, Label.class, Menu.class, Player.class, Particles.class, PushBlock.class, Wall.class, Finish.class, Water.class, Floor.class);
         
     }
     
@@ -80,7 +86,7 @@ public class GameWorld extends World
     // Undo related methods
     public void playerMoved() {
         int prevMovesSize = previousMoves.size();
-        
+        totalMoves ++;
         // if stack size is above 20 (or 10 moves) remove the least recent one
         if (prevMovesSize >= 20) {
             previousMoves.remove(0);
@@ -103,6 +109,7 @@ public class GameWorld extends World
     
     public void removeUndo() {
         // Is needed because of how ice works
+        totalMoves --;
         previousMoves.pop();
         previousMoves.pop();
     }
@@ -113,7 +120,7 @@ public class GameWorld extends World
         }
         TileObject[][] oldBlockGrid = previousMoves.pop();
         TileObject[][] oldFloorGrid = previousMoves.pop();
-        
+        totalMoves --;
         for (int i = 0; i < floorGrid.length; i++) {
             for (int j= 0; j < floorGrid[0].length; j++) {
                 
@@ -138,7 +145,7 @@ public class GameWorld extends World
     
     // Menu related methods
     public void finishLevel() {
-        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton nextLevel = new TravelButton(level+1, "images/ui/buttons/next_level", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
         ActorImage victory = new ActorImage(new GreenfootImage("images/ui/menu/victory.png"));
@@ -146,7 +153,7 @@ public class GameWorld extends World
         Menu menu = new Menu(400, 350);
         addObject(menu, getWidth()/2, getHeight()/2);
         plr.movementOff();
-        menu.addItem(victory, 0.8);
+        menu.addItem(victory, 0.7);
         menu.addItem(nextLevel, 0.5);
         menu.addItem(levelSelect, 0.5);
         menu.addItem(restart, 0.5);
@@ -159,10 +166,28 @@ public class GameWorld extends World
         if (highestCompletedLevel < level) {
             highestCompletedLevel = level;
         }
+        
+        totalTime += gameTimer.millisElapsed();
+        System.out.println("Time: " + totalTime + " Moves:" + totalMoves);
+        System.out.println("Off by: " + (totalTime - getOwnerTime()) + " Off Moves: " + (totalMoves - getOwnerMoves()));
+        int timeGrade = totalTime - getOwnerTime();
+        int moveGrade = totalMoves - getOwnerMoves(); 
+        int overallGrade = 100;
+        
+        if (moveGrade >= 2) {
+            overallGrade /= moveGrade;
+        } else if (moveGrade <= -2) {
+            overallGrade *= Math.abs(moveGrade);
+        }
+        overallGrade -= timeGrade / 1000;
+        System.out.println(overallGrade);
+        Label grade = new Label("Grade: " + overallGrade, 40);
+        menu.addItem(grade, 0);
+        menuAssets.add(grade);
     }
     
     public void lostLevel() {
-        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
         UndoButton undo = new UndoButton("images/ui/buttons/undo_move", 3);
         ActorImage dead = new ActorImage(new GreenfootImage("images/ui/menu/dead.png"));
@@ -170,7 +195,7 @@ public class GameWorld extends World
         Menu menu = new Menu(400, 350);
         addObject(menu, getWidth()/2, getHeight()/2);
         plr.movementOff();
-        menu.addItem(dead, 0.8);
+        menu.addItem(dead, 0.7);
         menu.addItem(undo, 0.5);
         menu.addItem(levelSelect, 0.5);
         menu.addItem(restart, 0.5);
@@ -179,10 +204,11 @@ public class GameWorld extends World
         menuAssets.add(restart);
         menuAssets.add(dead);
         menuAssets.add(menu);
+        totalTime += gameTimer.millisElapsed();
     }
     
     public void pauseLevel() {
-        TravelButton levelSelect = new TravelButton(0, "images/ui/buttons/level_select", 3);
+        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
         BackButton backToLevel = new BackButton("images/ui/buttons/back_to_level", 3);
         ActorImage pause = new ActorImage(new GreenfootImage("images/ui/menu/paused.png"));
@@ -190,7 +216,7 @@ public class GameWorld extends World
         Menu menu = new Menu(400, 350);
         addObject(menu, getWidth()/2, getHeight()/2);
         plr.movementOff();
-        menu.addItem(pause, 0.8);
+        menu.addItem(pause, 0.7);
         menu.addItem(levelSelect, 0.5);
         menu.addItem(restart, 0.5);
         menu.addItem(backToLevel, 0.5);
@@ -199,6 +225,8 @@ public class GameWorld extends World
         menuAssets.add(pause);
         menuAssets.add(menu);
         menuAssets.add(backToLevel);
+        
+        totalTime += gameTimer.millisElapsed();
     }
     
     public void removeMenuAssets() {
@@ -206,6 +234,7 @@ public class GameWorld extends World
             removeObject(menuAssets.get(i));
         }
         plr.movementOn();
+        gameTimer.mark();
     }
     
     //Getters and Setters
@@ -246,4 +275,12 @@ public class GameWorld extends World
         floorGrid[y][x] = floor;
     }
     
+    // These are base times if for some reason there is none in any on the child class
+    public int getOwnerTime() {
+        return 1000000;
+    }
+    
+    public int getOwnerMoves() {
+        return 100;
+    }
 }
