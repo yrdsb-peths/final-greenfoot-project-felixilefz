@@ -2,10 +2,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 import java.util.*;
 /**
- * Write a description of class GameWorld here.
+ * The main world where most of the gameplay is
+ * The class's children set the level layout
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class GameWorld extends World
 {

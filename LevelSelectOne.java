@@ -12,5 +12,13 @@ public class LevelSelectOne extends LevelSelect
     {
         super(12, 0);
     }
-
+    
+    
+    public Integer getPrev() {
+        return null;
+    }
+    
+    public Integer getNext() {
+        return -3;
+    }
 }
