@@ -20,12 +20,12 @@ public class LevelFour extends GameWorld
         {null, null, null, null, null, null, null, null, null}
     };
     private static TileObject[][] blockPlan = {
-        {null, null, null, new Wall(), new Finish(), new Wall(), null, null, null},
+        {null, null, null, new StrongWall(), new Finish(), new StrongWall(), null, null, null},
         {null, null, null, null, null, null, null, new PushBlock(), null},
         {new Player(), null, null, new Wall(), null, new Wall(), null, null, null},
         {null, null, null, new Wall(), null, new Wall(), null, null, null},
         {null, new Key(), null, null, null, null, null, new Bomb(), null},
-        {null, null, null, new Wall(), new Finish(), new Wall(), null, null, null}
+        {null, null, null, new StrongWall(), new Finish(), new StrongWall(), null, null, null}
     };
     
     public LevelFour()

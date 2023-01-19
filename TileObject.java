@@ -1,6 +1,12 @@
 
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * Used in GameWorld
+ * 
+ * @author Felix Zhao
+ * @version 1/18/2023
+ */
 
 public class TileObject extends Actor
 {

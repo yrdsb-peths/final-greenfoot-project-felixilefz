@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 /**
- * Write a description of class Player here.
+ * Listens to the user's input and moves accordingly
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Player extends TileObject
 {
@@ -13,6 +13,7 @@ public class Player extends TileObject
     boolean tweening = false;
     boolean canMove = true;
     
+    public static GreenfootSound splashSound = new GreenfootSound("sounds/splash_sound.mp3");
         
     // Not used yet
     public Player(int scale, int x, int y) {
@@ -133,6 +134,7 @@ public class Player extends TileObject
         }
         
         if (floor instanceof Water) {
+            splashSound.play();
             world.lostLevel();
         }
         

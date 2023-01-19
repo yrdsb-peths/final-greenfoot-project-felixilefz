@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LevelSelect here.
+ * The world that brings the player to all the levels they have unlocked
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class LevelSelect extends World
 {
@@ -22,12 +22,22 @@ public class LevelSelect extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        addObject(new TravelButton(0, 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
+        
+        if (getPrev() != null) {
+            addObject(new TravelButton(getPrev(), 40, 40, "images/ui/buttons/prev_world", 3), 30, getHeight()/2);
+        }
+        
+        if (getNext() != null) {
+            addObject(new TravelButton(getNext(), 40, 40, "images/ui/buttons/next_world", 3), getWidth()-30, getHeight()/2);
+        }
+        
         int x = BUTTON_PADDING; // Starting number is the distance between edge and the button on a new row
         int y = 100; // same thing as above
         int spacing = (getWidth() - BUTTON_PADDING * 2) / (BUTTONS_PER_ROW-1);
         int totalRows = levelCount / BUTTONS_PER_ROW;
         
-        addObject(new TravelButton(0, 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
+       
         
         for (int i = 0; i < totalRows; i++) {
             for (int j = 0; j < BUTTONS_PER_ROW; j++) {
@@ -52,5 +62,14 @@ public class LevelSelect extends World
         
         
         
+    }
+    
+    
+    public Integer getPrev() {
+        return null;
+    }
+    
+    public Integer getNext() {
+        return null;
     }
 }

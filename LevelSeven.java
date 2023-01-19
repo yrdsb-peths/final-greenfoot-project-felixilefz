@@ -34,6 +34,6 @@ public class LevelSeven extends GameWorld
     }
     
     public int getOwnerMoves() {
-        return 13;
+        return 11;
     }
 }

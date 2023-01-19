@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Dynamite extends PushBlock
 {
-    
+    public static GreenfootSound soundEffect = new GreenfootSound("sounds/explosion_sound.mp3");
     
     public boolean checkSpot(int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
@@ -21,12 +21,14 @@ public class Dynamite extends PushBlock
         TileObject floor = world.getFloorAt(x+dx, y+dy);
         TileObject block = world.getBlockAt(x+dx, y+dy);
         
-        
-        if (block instanceof Finish) {
-            return false;
+        if (block instanceof StrongWall || block instanceof StrongDoor) {
+            explode(0, 0);
+            return true;
         }
         
-        if (block instanceof Wall) {
+        
+        
+        if (block instanceof Wall || block instanceof Finish) {
 
             explode(dx, dy);
             //world.removeBlock(x+dx, y+dy);            
@@ -37,7 +39,7 @@ public class Dynamite extends PushBlock
         
         if (floor instanceof Water) {
             world.removeBlock(x, y);
-            
+            splashSound.play();
             Floor newFloor = new Floor();
             world.addObject(newFloor, 0, 0);
             newFloor.setX(x + dx);
@@ -65,6 +67,10 @@ public class Dynamite extends PushBlock
             setY(y+dy);
             world.replaceBlock(x, y, this);
             slip(x, y, dx, dy);
+            return true;
+        }
+        
+        if (getWorld() == null) {
             return true;
         }
         
@@ -96,6 +102,7 @@ public class Dynamite extends PushBlock
         }
         
         if (floor instanceof Water) {
+            splashSound.play();
             Floor newFloor = new Floor();
             world.addObject(newFloor, 0, 0);
             newFloor.setX(newX + dx);
@@ -123,6 +130,7 @@ public class Dynamite extends PushBlock
     
     // Destory everything, including the player, in a 3x3 box
     private void explode(int dx, int dy) {
+        soundEffect.play();
         world.removeBlock(x, y);
         world.removeObject(this);
         // Uses a for loop to easily change the explosion area
@@ -139,7 +147,9 @@ public class Dynamite extends PushBlock
                     if (block instanceof Dynamite) {
                         ((Dynamite) block).explode(0, 0);
                     }
-                    
+                    if (block instanceof StrongWall || block instanceof StrongDoor) {
+                        continue;
+                    }
                     
                     world.removeBlock(x+i+dx, y+j+dy);
                     world.removeObject(block);

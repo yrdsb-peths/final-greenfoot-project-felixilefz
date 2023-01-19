@@ -2,13 +2,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 import java.util.*;
 /**
- * Write a description of class GameWorld here.
+ * The main world where most of the gameplay is
+ * The class's children set the level layout
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class GameWorld extends World
 {
+    private static GreenfootSound winEffect = new GreenfootSound("sounds/win_sound.mp3");
     private static int highestCompletedLevel = 0;
     private int scale;
     private int width;
@@ -145,6 +147,8 @@ public class GameWorld extends World
     
     // Menu related methods
     public void finishLevel() {
+        winEffect.play();
+        
         TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton nextLevel = new TravelButton(level+1, "images/ui/buttons/next_level", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);

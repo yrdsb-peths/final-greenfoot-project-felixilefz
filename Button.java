@@ -1,13 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Button here.
+ * Has the logic to detect the mouse relation to the button
+ * Calls the function in the subclass
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Button extends Actor
 {
+    private static GreenfootSound clickEffect = new GreenfootSound("sounds/click_sound.mp3");
     private boolean hover = false;
     private boolean mouseDown = false;
     protected GreenfootImage[] imageStates;
@@ -50,6 +52,7 @@ public class Button extends Actor
         }
                                                                                                                                                                                                                                                                        
         if (Greenfoot.mouseClicked(this) && mouseDown) {
+            clickEffect.play();
             action();
             mouseDown = false;
             setImage(imageStates[0]);

@@ -12,4 +12,14 @@ public class LevelSelectTwo extends LevelSelect
     {
         super(4, 12);
     }
+    
+    
+    
+    public Integer getPrev() {
+        return -2;
+    }
+    
+    public Integer getNext() {
+        return null;
+    }
 }
