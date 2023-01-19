@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Level Ten Layout
+ * Level One Layout
  * 
  * @author Felix Zhao
  * @version 1/18/2023
@@ -24,19 +24,24 @@ public class LevelOne extends GameWorld
         {new Wall(), null, new Finish(), null, new Wall()},    
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelOne()
     {
         super(floorPlan, blockPlan, 1);
     }
     
-    // Getters
-    
-    // These are to calculate the grade you get after you finish the level
-    // These are based on my times
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 2500;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 7;
     }

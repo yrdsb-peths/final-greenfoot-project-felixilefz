@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bomb here.
+ * An pushable item that is used within gameplay
+ * Explodes in a 1x1 box when crushed breaking various blocks
+ * Can fill water
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Bomb extends PushBlock
 {

@@ -27,16 +27,25 @@ public class LevelTwelve extends GameWorld
         {null, null, null, null, new Finish(), new Wall(), null, null, null},
         {null, new Wall(), null, null, null, null, null, null, new Wall()}
     };
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     
     public LevelTwelve()
     {
         super(floorPlan, blockPlan, 12);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 12000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 15;
     }

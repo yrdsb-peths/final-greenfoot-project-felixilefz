@@ -26,15 +26,24 @@ public class LevelFive extends GameWorld
         {null, null, null, new Wall(), new Wall(), new Wall(), new Finish(), new Wall()}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelFive()
     {
         super(floorPlan, blockPlan, 5);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 8000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 21;
     }

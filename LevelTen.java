@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Write a description of class LevelFive here.
+ * Level Ten Layout
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class LevelTen extends GameWorld
 {
@@ -30,15 +30,24 @@ public class LevelTen extends GameWorld
         {null, null, null, null, null, new StrongWall(), null, null, null, new Wall(), new Finish()}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelTen()
     {
         super(floorPlan, blockPlan, 10);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 16000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 46;
     }

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BackButton here.
+ * Used to delete the menu when the user opens it
  * 
  * @author Felix Zhao
- * @version (a version number or a date)
+ * @version 1/18/2023
  */
 public class BackButton extends Button
 {
@@ -12,6 +12,9 @@ public class BackButton extends Button
         super(image, numStates);
     }
     
+    /**
+     * Deletes the menu on screen if there is one
+     */
     public void action()
     {
         GameWorld world = (GameWorld) getWorld();

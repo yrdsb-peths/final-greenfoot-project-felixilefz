@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 /**
  * Listens to the user's input and moves accordingly
+ * Can die in some situtations
  * 
  * @author Felix Zhao
  * @version 1/18/2023
@@ -87,8 +88,6 @@ public class Player extends TileObject
             slip(x, y, dx, dy);
             return false;
         }
-        
-        
         
         world.removeBlock(x, y);
         setX(x+dx);

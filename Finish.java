@@ -1,23 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Finish here.
+ * Empty class, changes interactions in gameplay
+ * It is the goal that the player has to reach
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Finish extends TileObject
 {
-    public Finish(GreenfootImage image, int scale, int x, int y) {
-        super(image, scale, x , y);
-    }
-    
-    public Finish() {
-        super();
-    }
-    
-    public void act() 
-    {
-        super.act();
-    }  
+
 }

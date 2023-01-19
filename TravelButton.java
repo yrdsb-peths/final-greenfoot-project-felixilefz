@@ -12,6 +12,9 @@ public class TravelButton extends Button
 
     private int level;
     
+    /**
+     * Sets the button with a level. Sets the image(s) and the scale of the image
+     */
     public TravelButton(int level, int width, int height, String image, int numStates) {
         super(image, numStates);
         this.level = level;  
@@ -20,6 +23,9 @@ public class TravelButton extends Button
         }
     }
     
+    /**
+     * Sets the button with a level. Sets the image(s)
+     */
     public TravelButton(int level, String image, int numStates) {
         super(image, numStates);
         this.level = level;         
@@ -73,8 +79,6 @@ public class TravelButton extends Button
         } else if (level == 16) {
             Greenfoot.setWorld(new LevelSixteen());
         } 
-        
-        
     }
 
 }

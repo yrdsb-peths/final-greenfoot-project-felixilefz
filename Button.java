@@ -13,8 +13,12 @@ public class Button extends Actor
     private boolean hover = false;
     private boolean mouseDown = false;
     protected GreenfootImage[] imageStates;
-    // This entire class is a work in progess
     
+    /**
+     * The construtor for the Button
+     * @param imageStates where the image is located
+     * @param numstates is how many different states there are of that image (at most 3 are used)
+     */
     public Button(String imagePath, int numStates) {
         GreenfootImage image = new GreenfootImage(imagePath + "_1.png");
         setImage(image);
@@ -26,13 +30,14 @@ public class Button extends Actor
         }
     }
     
-    
+    /**
+     * Checks the state of the mouse in relation to the button
+     * If the mouse is hovering
+     * If the mouse is clicked on the button
+     * If the mouse let go after clicking on the button
+     */
     public void act()
     {
-        // Work in Progess
-        // Should check if button is pressed and let go, if so call action
-        // Addtionally should change when hovered and when pressed
-        
         if (Greenfoot.mouseMoved(this)) {
             hover = true;
             if (imageStates.length > 1) {
@@ -62,16 +67,21 @@ public class Button extends Actor
         }
     }
     
+    /**
+     * Sets the scale for the buttons
+     * @param width sets the width of the button to width
+     * @param height sets the height of the button to height
+     */
     public void setScale(int width, int height) {
         for (int i = 0; i < imageStates.length; i++) {
             imageStates[i].scale(width, height);
         }
     }
     
+    /**
+     * Action does nothing in this class but should be in the subclasses
+     */
     public void action() {
-        /*
-         * Does nothing in the main class
-         * Functionaltiy should be implemented in subclasses 
-         */
+        // Does nothing. Should be added in the subclasses
     }
 }

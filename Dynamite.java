@@ -1,10 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Dynamite here.
+ * An pushable item that is used within gameplay
+ * Explodes in a 3x3 box when crushed breaking various blocks
+ * Sets off other instances of this class
+ * Can kill the player if in the right scenario
+ * Can fill water
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Dynamite extends PushBlock
 {

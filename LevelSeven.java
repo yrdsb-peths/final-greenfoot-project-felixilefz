@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Write a description of class LevelFour here.
+ * Level Seven Layout
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class LevelSeven extends GameWorld
 {
@@ -24,15 +24,24 @@ public class LevelSeven extends GameWorld
         {null, null, new Wall(), null, new Wall(), null},
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelSeven()
     {
         super(floorPlan, blockPlan, 7);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 5000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 11;
     }

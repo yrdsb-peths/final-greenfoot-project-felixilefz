@@ -30,15 +30,24 @@ public class LevelEleven extends GameWorld
         {null, null, null, null, new StrongWall(), null, null, null, null, null}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelEleven()
     {
         super(floorPlan, blockPlan, 11);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 12000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 36;
     }

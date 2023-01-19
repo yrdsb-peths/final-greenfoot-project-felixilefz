@@ -30,15 +30,24 @@ public class LevelFourteen extends GameWorld
         {null, null, null, new Wall(), null, new Wall(), null, null, new PushBlock(), null, null}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelFourteen()
     {
         super(floorPlan, blockPlan, 14);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 30000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 51;
     }

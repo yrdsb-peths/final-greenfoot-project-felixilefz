@@ -28,15 +28,24 @@ public class LevelEight extends GameWorld
         {null, null, null, null, new Wall(), new Wall(), new Finish(), new Wall(), new Wall()}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelEight()
     {
         super(floorPlan, blockPlan, 8);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 15000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 55;
     }

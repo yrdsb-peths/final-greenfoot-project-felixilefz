@@ -26,6 +26,12 @@ public class GameWorld extends World
     private int totalMoves;
     private int totalTime;
     
+    /**
+     * Creates a world that the user plays in. Takes the layout from its subclasses
+     * @param floorPlan what  and where the floor will be
+     * @param blockPlan what and where the blocks will be
+     * @param level the current level the layout is
+     */
     public GameWorld(TileObject[][] floorPlan, TileObject[][] blockPlan, int level)
     {    
         super(600, 400, 1); 
@@ -53,6 +59,9 @@ public class GameWorld extends World
         
     }
     
+    /**
+     * Takes the layout given and adds the tiles to the world
+     */
     public void createBase() {
         // Creates the outer walls and places basic floor tiles
         String path = "images/tiles";
@@ -86,7 +95,10 @@ public class GameWorld extends World
        
     }
     
-    // Undo related methods
+    /**
+     * Is activated when the player moves.Stores the world before the movement
+     * Only stores up to the last 10 moves
+     */
     public void playerMoved() {
         int prevMovesSize = previousMoves.size();
         totalMoves ++;
@@ -110,13 +122,19 @@ public class GameWorld extends World
         previousMoves.push(oldBlockGrid);
     }
     
+    /**
+     * Removes the most recently added moves
+     */
     public void removeUndo() {
-        // Is needed because of how ice works
+        // Is needed because of how pushing is calcuated
         totalMoves --;
         previousMoves.pop();
         previousMoves.pop();
     }
     
+    /**
+     * Undos the most recent move if there is one
+     */
     public void undoMove() {
         if (previousMoves.empty()) {
             return;
@@ -147,6 +165,13 @@ public class GameWorld extends World
     }
     
     // Menu related methods
+    
+    /**
+     * Creates a victory menu when the player reaches the goal
+     * The menu has a victory title and 3 buttons, level select, restart and next level
+     * It also displays the player's grade which is determined by the moves and amount of time they took
+     * Also Stops the player's movement
+     */
     public void finishLevel() {
         winEffect.play();
         
@@ -173,8 +198,7 @@ public class GameWorld extends World
         }
         
         totalTime += gameTimer.millisElapsed();
-        System.out.println("Time: " + totalTime + " Moves:" + totalMoves);
-        System.out.println("Off by: " + (totalTime - getOwnerTime()) + " Off Moves: " + (totalMoves - getOwnerMoves()));
+        
         int timeGrade = totalTime - getOwnerTime();
         int moveGrade = totalMoves - getOwnerMoves(); 
         int overallGrade = 100;
@@ -185,12 +209,16 @@ public class GameWorld extends World
             overallGrade *= Math.abs(moveGrade);
         }
         overallGrade -= timeGrade / 1000;
-        System.out.println(overallGrade);
         Label grade = new Label("Grade: " + overallGrade, 40);
         menu.addItem(grade, 0);
         menuAssets.add(grade);
     }
     
+    /**
+     * Creates a death menu when the player dies
+     * The menu has a dead title and 3 buttons, level select, restart and undo move
+     * Also Stops the player's movement
+     */
     public void lostLevel() {
         TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
@@ -212,6 +240,11 @@ public class GameWorld extends World
         totalTime += gameTimer.millisElapsed();
     }
     
+    /**
+     * Creates a pause menu when the player presses escape
+     * The menu has a pause title and 3 buttons, level select, restart and back (brings user back to the level)
+     * Also Stops the player's movement
+     */
     public void pauseLevel() {
         TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
         TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
@@ -234,6 +267,10 @@ public class GameWorld extends World
         totalTime += gameTimer.millisElapsed();
     }
     
+    /**
+     * Removes all menu assets
+     * Allows the player to move again
+     */
     public void removeMenuAssets() {
         for (int i = 0; i < menuAssets.size(); i++) {
             removeObject(menuAssets.get(i));
@@ -243,39 +280,65 @@ public class GameWorld extends World
     }
     
     //Getters and Setters
-    
+    /**
+     * @return the highest level the player has completed
+     */
     public static int getHighestLevel() {
         return highestCompletedLevel;
     }
     
+    /**
+     * @return how many tiles long the world is
+     */
     public int getGridWidth() {
         return width;
     }
     
+    /**
+     * @return how many tiles tall the world is
+     */
     public int getGridHeight() {
         return height;
     }
     
+    /**
+     * @return the floor at the given x and y value
+     */
     public TileObject getFloorAt(int x, int y) {
         return floorGrid[y][x];
     }
     
+    /**
+     * @return the block at the given x and y value
+     */
     public TileObject getBlockAt(int x, int y) {
         return blockGrid[y][x];
     }
     
+    /**
+     * removes the block at the given x and y value
+     */
     public void removeBlock(int x, int y) {
         blockGrid[y][x] = null;
     }
     
+    /**
+     * replaces the block at the given x and y value
+     */
     public void replaceBlock(int x, int y, TileObject block) {
         blockGrid[y][x] = block;
     }
     
+    /**
+     * removes the floor at the given x and y value
+     */
     public void removeFloor(int x, int y) {
         floorGrid[y][x] = null;
     }
     
+    /**
+     * replaces the floor at the given x and y value
+     */
     public void replaceFloor(int x, int y, TileObject floor) {
         floorGrid[y][x] = floor;
     }

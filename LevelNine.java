@@ -29,15 +29,24 @@ public class LevelNine extends GameWorld
         {null, null, null, null, null, null, null, null, null, null, null}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelNine()
     {
         super(floorPlan, blockPlan, 9);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 15000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 26;
     }

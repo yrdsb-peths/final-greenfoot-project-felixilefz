@@ -24,15 +24,24 @@ public class LevelTwo extends GameWorld
         {null, null, null, null, null, new Finish()}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelTwo()
     {
         super(floorPlan, blockPlan, 2);
     }
     
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 5000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 16;
     }

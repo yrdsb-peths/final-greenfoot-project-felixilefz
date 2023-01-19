@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Write a description of class LevelSix here.
+ * Level Six Layout
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class LevelSix extends GameWorld
 {
@@ -26,19 +26,24 @@ public class LevelSix extends GameWorld
         {null, null, null, new Wall(), new Wall(), null, null}
     };
     
+    /**
+     * Gives the layout and level to the superclass so the world can be made
+     */
     public LevelSix()
     {
         super(floorPlan, blockPlan, 6);
     }
     
-    // Getters
-    
-    // These are to calculate the grade you get after you finish the level
-    // These are based on my times
+    /**
+     * Roughly the amount of time I took to beat this level
+     */
     public int getOwnerTime() {
         return 6000;
     }
     
+    /**
+     * Roughly the moves I took to beat this level
+     */
     public int getOwnerMoves() {
         return 16;
     }

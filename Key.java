@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * An item that is used in GameWorld
+ * Can be pushed around by the player
  * Can open doors and can fill water
  * 
  * @author Felix Zhao
