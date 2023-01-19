@@ -27,5 +27,6 @@ public class TitleScreen extends World
         addObject(playButton, getWidth()/2, getHeight()/2-25);
         addObject(settingsButton, getWidth()/2, getHeight()/2+50);
         addObject(infoHelpButton, getWidth()/2, getHeight()/2+125);
+        addObject(new Label("Push Dungeon", 80), getWidth()/2, 60);
     }
 }
