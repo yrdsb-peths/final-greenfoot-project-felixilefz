@@ -70,6 +70,10 @@ public class Dynamite extends PushBlock
             return true;
         }
         
+        if (getWorld() == null) {
+            return true;
+        }
+        
         world.removeBlock(x, y);
         setX(x+dx);
         setY(y+dy);

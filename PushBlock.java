@@ -65,6 +65,10 @@ public class PushBlock extends TileObject
             }
         }
         
+        if (getWorld() == null) {
+            return true;
+        }
+        
         world.removeBlock(x, y);
         setX(x+dx);
         setY(y+dy);
