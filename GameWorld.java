@@ -175,9 +175,9 @@ public class GameWorld extends World
     public void finishLevel() {
         winEffect.play();
         
-        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
-        TravelButton nextLevel = new TravelButton(level+1, "images/ui/buttons/next_level", 3);
-        TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
+        TravelButton levelSelect = new TravelButton("select1", "images/ui/buttons/level_select", 3);
+        TravelButton nextLevel = new TravelButton((level+1)+"", "images/ui/buttons/next_level", 3);
+        TravelButton restart = new TravelButton(level+"", "images/ui/buttons/restart_level", 3);
         ActorImage victory = new ActorImage(new GreenfootImage("images/ui/menu/victory.png"));
         
         Menu menu = new Menu(400, 350);
@@ -220,8 +220,8 @@ public class GameWorld extends World
      * Also Stops the player's movement
      */
     public void lostLevel() {
-        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
-        TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
+        TravelButton levelSelect = new TravelButton("select1", "images/ui/buttons/level_select", 3);
+        TravelButton restart = new TravelButton(level+"", "images/ui/buttons/restart_level", 3);
         UndoButton undo = new UndoButton("images/ui/buttons/undo_move", 3);
         ActorImage dead = new ActorImage(new GreenfootImage("images/ui/menu/dead.png"));
         
@@ -246,8 +246,8 @@ public class GameWorld extends World
      * Also Stops the player's movement
      */
     public void pauseLevel() {
-        TravelButton levelSelect = new TravelButton(-2, "images/ui/buttons/level_select", 3);
-        TravelButton restart = new TravelButton(level, "images/ui/buttons/restart_level", 3);
+        TravelButton levelSelect = new TravelButton("select1", "images/ui/buttons/level_select", 3);
+        TravelButton restart = new TravelButton(level+"", "images/ui/buttons/restart_level", 3);
         BackButton backToLevel = new BackButton("images/ui/buttons/back_to_level", 3);
         ActorImage pause = new ActorImage(new GreenfootImage("images/ui/menu/paused.png"));
         

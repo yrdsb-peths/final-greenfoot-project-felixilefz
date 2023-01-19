@@ -15,11 +15,11 @@ public class LevelSelectOne extends LevelSelect
     }
     
     // Getters
-    public Integer getPrev() {
+    public String getPrev() {
         return null;
     }
     
-    public Integer getNext() {
-        return -3;
+    public String getNext() {
+        return "select2";
     }
 }
