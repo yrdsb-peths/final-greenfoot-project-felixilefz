@@ -84,7 +84,7 @@ public class Dynamite extends PushBlock
     private void slip(int newX, int newY, int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (newX + dx >= world.getGridWidth() || newY + dy >= world.getGridHeight() || newX+dx < 0 || newY+dy < 0) {
-            tween(newX, newY);
+            iceMove(newX, newY);
             return;
         }
         
@@ -92,7 +92,7 @@ public class Dynamite extends PushBlock
         TileObject block = world.getBlockAt(newX+dx, newY+dy);
         
         if (block instanceof PushBlock || block instanceof Wall || block instanceof Finish) {
-            tween(newX, newY);
+            iceMove(newX, newY);
             return;
         }
         
@@ -116,11 +116,11 @@ public class Dynamite extends PushBlock
             return;
         }
         
-        tween(newX+dx, newY+dy);
+        iceMove(newX+dx, newY+dy);
         
     }
     
-    private void tween(int endX, int endY) {
+    private void iceMove(int endX, int endY) {
         GameWorld world = (GameWorld) getWorld();
         world.removeBlock(x, y);
         setX(endX);

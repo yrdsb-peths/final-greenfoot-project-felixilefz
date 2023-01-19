@@ -3,6 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Used in GameWorld
+ * Used as a tile
  * 
  * @author Felix Zhao
  * @version 1/18/2023

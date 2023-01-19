@@ -1,20 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Key here.
+ * An item that is used in GameWorld
+ * Can open doors and can fill water
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Key extends PushBlock
 {
     
     public static GreenfootSound soundEffect = new GreenfootSound("sounds/open_door_sound.mp3");
-    
-    public void act()
-    {
-        
-    }
     
     public boolean checkSpot(int dx, int dy) {
         if (x + dx >= world.getGridWidth() || y + dy >= world.getGridHeight() || x+dx < 0 || y+dy < 0) {
@@ -82,7 +78,7 @@ public class Key extends PushBlock
     private void slip(int newX, int newY, int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (newX + dx >= world.getGridWidth() || newY + dy >= world.getGridHeight() || newX+dx < 0 || newY+dy < 0) {
-            tween(newX, newY);
+            iceMove(newX, newY);
             return;
         }
         
@@ -90,7 +86,7 @@ public class Key extends PushBlock
         TileObject block = world.getBlockAt(newX+dx, newY+dy);
         
         if (block instanceof PushBlock || block instanceof Wall || block instanceof Finish) {
-            tween(newX, newY);
+            iceMove(newX, newY);
             return;
         }
         
@@ -114,11 +110,11 @@ public class Key extends PushBlock
             return;
         }
         
-        tween(newX+dx, newY+dy);
+        iceMove(newX+dx, newY+dy);
         
     }
     
-    private void tween(int endX, int endY) {
+    private void iceMove(int endX, int endY) {
         GameWorld world = (GameWorld) getWorld();
         world.removeBlock(x, y);
         setX(endX);

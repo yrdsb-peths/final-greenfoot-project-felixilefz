@@ -10,30 +10,14 @@ public class Player extends TileObject
 {
 
     SimpleTimer controlTimer = new SimpleTimer();
-    boolean tweening = false;
     boolean canMove = true;
     
     public static GreenfootSound splashSound = new GreenfootSound("sounds/splash_sound.mp3");
-        
-    // Not used yet
-    public Player(int scale, int x, int y) {
-        super(new GreenfootImage("images/player.png"), scale, x , y);
-        this.scale = scale;
-        this.x = x;
-        this.y = y;
-        GreenfootImage image = getImage();
-        image.scale(scale, scale);
-        setImage(image);
-    }
-    
-    public Player() {
-        
-    }
     
     public void act()
     {
         GameWorld world = (GameWorld) getWorld();
-        if (tweening || !canMove) {
+        if (!canMove) {
             return;
         }
         
@@ -116,7 +100,7 @@ public class Player extends TileObject
     private void slip(int newX, int newY, int dx, int dy) {
         GameWorld world = (GameWorld) getWorld();
         if (newX + dx >= world.getGridWidth() || newY + dy >= world.getGridHeight() || newX+dx < 0 || newY+dy < 0) {
-            tween(newX, newY);
+            iceMove(newX, newY);
             return;
         }
         
@@ -124,7 +108,7 @@ public class Player extends TileObject
         TileObject block = world.getBlockAt(newX+dx, newY+dy);
         
         if (block instanceof PushBlock || block instanceof Wall || block instanceof Finish) {
-            tween(newX, newY);
+            iceMove(newX, newY);
             return;
         }
         
@@ -138,12 +122,12 @@ public class Player extends TileObject
             world.lostLevel();
         }
         
-        tween(newX+dx, newY+dy);
+        iceMove(newX+dx, newY+dy);
         
     }
     
-    private void tween(int endX, int endY) {
-        // Planned to have an in between animation, but not here yet. 
+    private void iceMove(int endX, int endY) {
+        // Planned to have an in beiceMove animation, but not here yet. 
         GameWorld world = (GameWorld) getWorld();
         world.removeBlock(x, y);
         setX(endX);

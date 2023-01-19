@@ -20,14 +20,15 @@ public class LevelSelect extends World
     
     public LevelSelect(int levelCount, int offset)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+       
         super(600, 400, 1); 
         addObject(new TravelButton(0, 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
         
+        // Adds a button to go the previous select screen if there is one
         if (getPrev() != null) {
             addObject(new TravelButton(getPrev(), 40, 40, "images/ui/buttons/prev_world", 3), 30, getHeight()/2);
         }
-        
+        // Adds a button to go the next select screen if there is one
         if (getNext() != null) {
             addObject(new TravelButton(getNext(), 40, 40, "images/ui/buttons/next_world", 3), getWidth()-30, getHeight()/2);
         }
@@ -41,9 +42,9 @@ public class LevelSelect extends World
         
         for (int i = 0; i < totalRows; i++) {
             for (int j = 0; j < BUTTONS_PER_ROW; j++) {
-                //if (i * BUTTONS_PER_ROW + j + 1 + offset > GameWorld.getHighestLevel()+1) {
-                //    return;
-                //}
+                if (i * BUTTONS_PER_ROW + j + 1 + offset > GameWorld.getHighestLevel()+1) {
+                    return;
+                }
                 addObject(new TravelButton(i * BUTTONS_PER_ROW + j + 1 + offset,  BUTTON_SCALE, BUTTON_SCALE, "images/ui/buttons/level_button" + (i * BUTTONS_PER_ROW + j + 1 + offset), 3), x, y);
                 x += spacing;
             }
@@ -64,6 +65,7 @@ public class LevelSelect extends World
         
     }
     
+    // Getters. Should be in the subclasses
     
     public Integer getPrev() {
         return null;

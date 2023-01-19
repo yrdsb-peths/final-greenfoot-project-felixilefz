@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Floor here.
+ * Pretty much an empty Class, used to display the floor if a floor tile is empty
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Floor extends TileObject
 {
@@ -15,10 +15,5 @@ public class Floor extends TileObject
     
     public Floor() {
         super();
-    }
-    
-    public void act() 
-    {
-        super.act();
-    }    
+    } 
 }

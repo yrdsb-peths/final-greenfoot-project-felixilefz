@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math.*;
 
 /**
- * Write a description of class LevelFour here.
+ * Level Tweleve Layout
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class LevelTwelve extends GameWorld
 {
@@ -31,9 +31,6 @@ public class LevelTwelve extends GameWorld
     public LevelTwelve()
     {
         super(floorPlan, blockPlan, 12);
-        
-        
-        
     }
     
     public int getOwnerTime() {

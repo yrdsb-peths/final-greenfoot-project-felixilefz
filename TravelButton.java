@@ -1,5 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * Directs the user to a new world depending on the button
+ * 
+ * @author Felix Zhao
+ * @version 1/18/2023
+ */
+
 public class TravelButton extends Button
 {
 
@@ -18,9 +25,13 @@ public class TravelButton extends Button
         this.level = level;         
     }
     
+    /**
+     * action in this button checks the level it is assgined to and goes the corrosponding world
+     */
     public void action() 
     {
-        // should switch to switch cases
+        
+        
         if (level == -3) {
             Greenfoot.setWorld(new LevelSelectTwo());
         } if (level == -2) {

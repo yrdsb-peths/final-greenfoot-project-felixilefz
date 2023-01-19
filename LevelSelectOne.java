@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LevelSelectOne here.
+ * Select Screen One
+ * Has levels from 1-12
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class LevelSelectOne extends LevelSelect
 {
@@ -13,7 +14,7 @@ public class LevelSelectOne extends LevelSelect
         super(12, 0);
     }
     
-    
+    // Getters
     public Integer getPrev() {
         return null;
     }

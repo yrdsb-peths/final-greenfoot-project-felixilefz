@@ -3,7 +3,8 @@ import java.lang.Math.*;
 import java.util.*;
 /**
  * The main world where most of the gameplay is
- * The class's children set the level layout
+ * The subclass's set the level layout
+ * While this class displays the layout
  * 
  * @author Felix Zhao
  * @version 1/18/2023
@@ -280,10 +281,19 @@ public class GameWorld extends World
     }
     
     // These are base times if for some reason there is none in any on the child class
+    
+    /**
+     * Should be in the subclasses, 1000000 is the default time
+     * @return The owner's time for a level to calculate score
+     */
     public int getOwnerTime() {
         return 1000000;
     }
     
+    /**
+     * Should be in the subclasses, 100 is the default moves
+     * @return The owner's moves for a level to calculate score
+     */    
     public int getOwnerMoves() {
         return 100;
     }

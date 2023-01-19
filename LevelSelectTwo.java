@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LevelSelectTwo here.
+ * Level Select Two
+ * Has levels 13-16
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class LevelSelectTwo extends LevelSelect
 {
@@ -14,6 +15,7 @@ public class LevelSelectTwo extends LevelSelect
     }
     
     
+    // Getters
     
     public Integer getPrev() {
         return -2;

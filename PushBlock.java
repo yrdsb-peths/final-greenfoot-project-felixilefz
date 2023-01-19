@@ -10,18 +10,6 @@ public class PushBlock extends TileObject
 {
     public static GreenfootSound splashSound = new GreenfootSound("sounds/splash_sound.mp3");
     
-    public PushBlock() {
-        
-    }
-    
-    
-    
-    public void act() 
-    {
-        // Add your action code here.
-        super.act();
-    }
-    
     public boolean push(int dx, int dy) {
         if (!checkSpot(dx, dy)) {
             return false;

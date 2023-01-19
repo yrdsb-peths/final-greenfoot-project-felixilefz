@@ -1,25 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Wall here.
+ * Empty Class, used to change interactions with other items
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/18/2023
  */
 public class Wall extends TileObject
 {
-    
-    public Wall(GreenfootImage image, int scale, int x, int y) {
-        super(image, scale, x , y);
-    }
-    
-    public Wall(String image) {
-        setImage(new GreenfootImage(image));
-    }
-    
-    public Wall() {
-        super();
-    }
-    
-    
+
 }
