@@ -10,3 +10,9 @@ Use **Z** to undo up to your 10 most recent moves
 Addtionally, use the **ESCAPE** button in a level to have a menu pop-up, allowing you to restart or go back to the level selection
 
 
+**Level Creator**
+
+Create your own custom levels (with limitations) 
+Show them with your friends and challegne them to solve your own puzzle
+
+
