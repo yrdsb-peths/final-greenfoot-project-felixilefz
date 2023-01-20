@@ -9,6 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class UndoButton extends Button
 {
+    /**
+     * Creates the look of the button
+     */
     public UndoButton(String image, int numStates) {
         super(image, numStates);
     }

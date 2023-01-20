@@ -13,6 +13,13 @@ public class Particles extends Actor
     private int duration; // Total amount of ticks
     private int time;
     
+    /**
+     * Creates a particle by width by height with an animation
+     * @param duration how long the particle will last in # of game loops
+     * @param gifPath the path where the animation is
+     * @param width the width of the particle
+     * @param height the height of the particle
+     */
     public Particles(int duration, String gifPath, int width, int height) {
         GifImage animation = new GifImage(gifPath);
         images = animation.getImages();
@@ -24,16 +31,31 @@ public class Particles extends Actor
         }
         setImage(images.get(0));
     }
+    /**
+     * Creates a particle with no animation. Used for pop-up text
+     * @param duration the duration the particle will last in # of game loops
+     */
+    public Particles(int duration, GreenfootImage image) {
+        setImage(image);
+        this.duration = duration;
+        time = 0;
+    }
     
+    /**
+     * Runs every game loop and changes animation if needed
+     * Also deletes the particle if the time has surpassed the duration
+     */
     public void act() {
-        GameWorld world = (GameWorld) getWorld();
+        World world = getWorld();
         if (time >= duration) {
             world.removeObject(this);
         }
         
         if (time % 20 == 0) {
-            setImage(images.get(animationNumber));
-            animationNumber = (animationNumber + 1) % images.size();
+            if (images != null) {
+                setImage(images.get(animationNumber));
+                animationNumber = (animationNumber + 1) % images.size();
+            }
         }
         time ++;
     }

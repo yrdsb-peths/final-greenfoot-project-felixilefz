@@ -22,7 +22,7 @@ public class LevelSelect extends World
     {    
        
         super(600, 400, 1); 
-        addObject(new TravelButton(0, 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
+        addObject(new TravelButton("title", 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
         
         // Adds a button to go the previous select screen if there is one
         if (getPrev() != null) {
@@ -45,7 +45,7 @@ public class LevelSelect extends World
                 if (i * BUTTONS_PER_ROW + j + 1 + offset > GameWorld.getHighestLevel()+1) {
                     return;
                 }
-                addObject(new TravelButton(i * BUTTONS_PER_ROW + j + 1 + offset,  BUTTON_SCALE, BUTTON_SCALE, "images/ui/buttons/level_button" + (i * BUTTONS_PER_ROW + j + 1 + offset), 3), x, y);
+                addObject(new TravelButton((i * BUTTONS_PER_ROW + j + 1 + offset)+"",  BUTTON_SCALE, BUTTON_SCALE, "images/ui/buttons/level_button" + (i * BUTTONS_PER_ROW + j + 1 + offset), 3), x, y);
                 x += spacing;
             }
             y += 100;
@@ -55,7 +55,7 @@ public class LevelSelect extends World
         // Checks if there's remaining buttons and adds it to the world
         if (levelCount % BUTTONS_PER_ROW != 0) {
             for (int i = 0; i < levelCount % BUTTONS_PER_ROW; i++) {
-                addObject(new TravelButton(totalRows * BUTTONS_PER_ROW + i + 1 + offset, BUTTON_SCALE, BUTTON_SCALE, "images/ui/buttons/level_button" + (totalRows * BUTTONS_PER_ROW + i + 1 + offset), 3), x, y);
+                addObject(new TravelButton((totalRows * BUTTONS_PER_ROW + i + 1 + offset)+"", BUTTON_SCALE, BUTTON_SCALE, "images/ui/buttons/level_button" + (totalRows * BUTTONS_PER_ROW + i + 1 + offset), 3), x, y);
                 x += spacing;
             }
         }
@@ -67,11 +67,11 @@ public class LevelSelect extends World
     
     // Getters. Should be in the subclasses
     
-    public Integer getPrev() {
+    public String getPrev() {
         return null;
     }
     
-    public Integer getNext() {
+    public String getNext() {
         return null;
     }
 }

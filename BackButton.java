@@ -8,6 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BackButton extends Button
 {
+    /**
+     * Creates the looks of the button
+     * @param image the image of the button
+     * @param numStates the number of states the image is supposed to have
+     */
     public BackButton(String image, int numStates) {
         super(image, numStates);
     }

@@ -46,7 +46,10 @@ public class Button extends Actor
         } else if (Greenfoot.mouseMoved(null)) {
             hover = false;
             mouseDown = false;
-            setImage(imageStates[0]);
+            
+            if (imageStates.length > 2) {
+                setImage(imageStates[0]);
+            }
         }
         
         if (Greenfoot.mousePressed(this) && !mouseDown) {
@@ -60,10 +63,16 @@ public class Button extends Actor
             clickEffect.play();
             action();
             mouseDown = false;
-            setImage(imageStates[0]);
+            if (imageStates.length > 2) {
+                setImage(imageStates[0]);
+            }
+
         } else if (Greenfoot.mouseClicked(null)) {
             mouseDown = false;
-            setImage(imageStates[0]);
+            if (imageStates.length > 2) {
+                setImage(imageStates[0]);
+            }
+
         }
     }
     

@@ -9,17 +9,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class LevelSelectOne extends LevelSelect
 {
+    /**
+     * Gives how many levels there will be to the superclass
+     *Gives how many levels there were before it (offset)
+     */
     public LevelSelectOne()
     {
         super(12, 0);
     }
     
     // Getters
-    public Integer getPrev() {
+    /**
+     * @return the previous selection world if there is one
+     */
+    public String getPrev() {
         return null;
     }
     
-    public Integer getNext() {
-        return -3;
+    /**
+     * @return the next selection world if there is one
+     */
+    public String getNext() {
+        return "select2";
     }
 }

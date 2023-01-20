@@ -18,6 +18,6 @@ public class InfoWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        addObject(new TravelButton(0, 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
+        addObject(new TravelButton("title", 132, 48, "images/ui/buttons/back_to_level", 3), 75, 30);
     }
 }
