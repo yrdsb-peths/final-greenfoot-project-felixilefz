@@ -35,7 +35,7 @@ public class CustomLevel extends GameWorld
     
     public CustomLevel()
     {
-        super(floorPlan, blockPlan, 0);
+        super(floorPlan, blockPlan, -1);
     }
     
     public static TileObject[][] getBlockPlan() {

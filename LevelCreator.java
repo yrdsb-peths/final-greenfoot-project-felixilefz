@@ -9,12 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LevelCreator extends World
 {
 
-    String itemSelected = "delete";
+    String itemSelected;
     
     public LevelCreator()
     {    
         super(600, 400, 1); 
         
+        addObject(new TravelButton("createmenu", 96, 32, "images/ui/buttons/back_to_level", 3), 50, 25);
         addObject(new SelectItemButton("images/player", "delete", 50), 25, 75);
         addObject(new SelectItemButton("images/player", "player", 50), 25, 125);
         addObject(new SelectItemButton("images/push_block", "pushblock", 50), 75, 125);
@@ -33,29 +34,25 @@ public class LevelCreator extends World
         int y = 20;
         TileObject[][] blockPlan = CustomLevel.getBlockPlan();
         TileObject[][] floorPlan = CustomLevel.getFloorPlan();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < blockPlan.length; i++) {
             x = 120;
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < blockPlan[0].length; j++) {
                 if (blockPlan[i][j] == null && floorPlan[i][j] == null) {
                     addObject(new TileButton("images/tile_basic", 40, i, j), x, y);
                 }
                 
                 if (blockPlan[i][j] instanceof Player) {
                     addObject(new TileButton("images/player", 40, i, j), x, y);
-                } else if (blockPlan[i][j] instanceof PushBlock) {
-                    addObject(new TileButton("images/push_block", 40, i, j), x, y);
                 } else if (blockPlan[i][j] instanceof Key) {
                     addObject(new TileButton("images/key", 40, i, j), x, y);
                 } else if (blockPlan[i][j] instanceof Bomb) {
                     addObject(new TileButton("images/bomb", 40, i, j), x, y);
                 } else if (blockPlan[i][j] instanceof Dynamite) {
                     addObject(new TileButton("images/dynamite", 40, i, j), x, y);
-                } else if (blockPlan[i][j] instanceof Door) {
-                    addObject(new TileButton("images/door", 40, i, j), x, y);
-                } else if (blockPlan[i][j] instanceof Wall) {
-                    addObject(new TileButton("images/default_wall", 40, i, j), x, y);
                 } else if (blockPlan[i][j] instanceof StrongDoor) {
                     addObject(new TileButton("images/strong_door", 40, i, j), x, y);
+                } else if (blockPlan[i][j] instanceof Door) {
+                    addObject(new TileButton("images/door", 40, i, j), x, y);
                 } else if (blockPlan[i][j] instanceof StrongWall) {
                     addObject(new TileButton("images/strong_wall", 40, i, j), x, y);
                 } else if (blockPlan[i][j] instanceof Finish) {
@@ -64,7 +61,11 @@ public class LevelCreator extends World
                     addObject(new TileButton("images/water", 40, i, j), x, y);
                 } else if (floorPlan[i][j] instanceof Ice) {
                     addObject(new TileButton("images/ice_tile", 40, i, j), x, y);
-                } 
+                } else if (blockPlan[i][j] instanceof Wall) {
+                    addObject(new TileButton("images/default_wall", 40, i, j), x, y);
+                } else if (blockPlan[i][j] instanceof PushBlock) {
+                    addObject(new TileButton("images/push_block", 40, i, j), x, y);
+                }
                 x += 40;
             }
             y += 40;

@@ -28,6 +28,9 @@ public class TileButton extends Button
         LevelCreator world = (LevelCreator) getWorld();
         
         String item = world.getItem();
+        if (item == null) {
+            return;
+        }
         if (item.equals("delete")) {
             setImage("images/tile_basic_1.png");
             getImage().scale(scale, scale);
@@ -66,7 +69,7 @@ public class TileButton extends Button
         } else if (item.equals("wall")) {
             setImage("images/default_wall_1.png");
             getImage().scale(scale, scale);
-            CustomLevel.setBlock(i, j, new PushBlock());
+            CustomLevel.setBlock(i, j, new Wall());
             CustomLevel.setFloor(i, j, null);
         } else if (item.equals("strongdoor")) {
             setImage("images/strong_door_1.png");

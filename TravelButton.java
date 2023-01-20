@@ -42,10 +42,16 @@ public class TravelButton extends Button
             Greenfoot.setWorld(new TitleScreen());
         } else if (level.equals("info")) {
             Greenfoot.setWorld(new InfoWorld());
+        } else if (level.equals("create")) {
+            Greenfoot.setWorld(new LevelCreator());
+        } else if (level.equals("createmenu")) {
+            Greenfoot.setWorld(new CreateMenu());
         } else if (level.equals("select1")) {
             Greenfoot.setWorld(new LevelSelectOne());
         } else if (level.equals("select2")) {
             Greenfoot.setWorld(new LevelSelectTwo());
+        } else if (level.equals("-1") && checkCustomLevel()) {
+            Greenfoot.setWorld(new CustomLevel());
         } else if (level.equals("1")) {
             Greenfoot.setWorld(new LevelOne());
         } else if (level.equals("2")) {
@@ -79,8 +85,35 @@ public class TravelButton extends Button
         } else if (level.equals("16")) {
             Greenfoot.setWorld(new LevelSixteen());
         } 
+    }
+    
+    public boolean checkCustomLevel() {
+        World world = getWorld();
+        TileObject[][] blockPlan = CustomLevel.getBlockPlan();
+        int playerCount = 0;
+        int finishCount = 0;
         
+        for (int i = 0; i < blockPlan.length; i++) {
+            for (int j = 0; j < blockPlan[0].length; j++) {
+                if (blockPlan[i][j] instanceof Player) {
+                    playerCount ++;
+                    if (playerCount > 1) {
+                        world.addObject(new Particles(500, new GreenfootImage("There is more than one character", 20, Color.WHITE, null)), world.getWidth()/2, world.getHeight()/2);
+                        return false;
+                    }
+                }
+                
+                if (blockPlan[i][j] instanceof Finish) {
+                    finishCount ++;
+                }
+            }
+        }
         
+        if (finishCount == 0 || playerCount == 0) {
+            world.addObject(new Particles(500, new GreenfootImage("There's no finish or player", 20, Color.WHITE, null)), world.getWidth()/2, world.getHeight()/2);
+            return false;
+        }
+        return true;
     }
 
 }

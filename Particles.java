@@ -25,15 +25,21 @@ public class Particles extends Actor
         setImage(images.get(0));
     }
     
+    public Particles(int duration, GreenfootImage image) {
+        setImage(image);
+    }
+    
     public void act() {
-        GameWorld world = (GameWorld) getWorld();
+        World world = getWorld();
         if (time >= duration) {
             world.removeObject(this);
         }
         
         if (time % 20 == 0) {
-            setImage(images.get(animationNumber));
-            animationNumber = (animationNumber + 1) % images.size();
+            if (images != null) {
+                setImage(images.get(animationNumber));
+                animationNumber = (animationNumber + 1) % images.size();
+            }
         }
         time ++;
     }
