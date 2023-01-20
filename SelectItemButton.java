@@ -1,15 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SelectItemButton here.
+ * Sets the item that will be placed in the custom level creator world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/19/2023
  */
 public class SelectItemButton extends Button
 {
     private String item;
-    
+    /**
+     * Creats the button's looks and sets the item that it is related to
+     */
     public SelectItemButton(String image, String item, int scale) {
         super(image, 1);
         this.item = item;
@@ -17,7 +19,7 @@ public class SelectItemButton extends Button
     }
     
     /**
-     * Deletes the menu on screen if there is one
+     * Sets the item to be placed in the custom level world
      */
     public void action()
     {

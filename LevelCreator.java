@@ -1,22 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LevelCreator here.
+ * The place where you can edit your custom level
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao 
+ * @version 1/19/2023
  */
 public class LevelCreator extends World
 {
 
     String itemSelected;
-    
+    /**
+     * Sets the place to be able to work on the custom level
+     */
     public LevelCreator()
     {    
         super(600, 400, 1); 
         
         addObject(new TravelButton("createmenu", 96, 32, "images/ui/buttons/back_to_level", 3), 50, 25);
-        addObject(new SelectItemButton("images/player", "delete", 50), 25, 75);
+        addObject(new SelectItemButton("images/ui/buttons/delete_tiles", "delete", 50), 25, 75);
         addObject(new SelectItemButton("images/player", "player", 50), 25, 125);
         addObject(new SelectItemButton("images/push_block", "pushblock", 50), 75, 125);
         addObject(new SelectItemButton("images/key", "key", 50), 25, 175);
@@ -72,10 +74,16 @@ public class LevelCreator extends World
         }
     }
     
+    /**
+     * Sets the selected item to be placed
+     */
     public void setItem(String item) {
         itemSelected = item;
     }
     
+    /**
+     * @return the selected item to be placed
+     */
     public String getItem() {
         return itemSelected;
     }

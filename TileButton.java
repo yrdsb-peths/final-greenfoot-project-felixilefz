@@ -1,17 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TileButton here.
+ * Used in LevelCreator to display the placed objects
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/19/2023
  */
 public class TileButton extends Button
 {
     private int i;
     private int j;
     private int scale;
-    
+    /**
+     * Creates the look of the button
+     * Sets the coordinate relation to the custom level
+     */
     public TileButton(String image, int scale, int i, int j) {
         super(image, 1);
         getImage().scale(scale, scale);
@@ -21,7 +24,8 @@ public class TileButton extends Button
     }
     
     /**
-     * Deletes the menu on screen if there is one
+     * Sets the image of the button depending on what item is selected in LevelCreator
+     * Also changes the array in CustomLevel
      */
     public void action()
     {

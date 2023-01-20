@@ -98,7 +98,7 @@ public class TravelButton extends Button
                 if (blockPlan[i][j] instanceof Player) {
                     playerCount ++;
                     if (playerCount > 1) {
-                        world.addObject(new Particles(500, new GreenfootImage("There is more than one character", 20, Color.WHITE, null)), world.getWidth()/2, world.getHeight()/2);
+                        world.addObject(new Particles(100, new GreenfootImage("There is more than one character", 40, Color.WHITE, null)), world.getWidth()/2, world.getHeight()/2);
                         return false;
                     }
                 }
@@ -110,7 +110,7 @@ public class TravelButton extends Button
         }
         
         if (finishCount == 0 || playerCount == 0) {
-            world.addObject(new Particles(500, new GreenfootImage("There's no finish or player", 20, Color.WHITE, null)), world.getWidth()/2, world.getHeight()/2);
+            world.addObject(new Particles(100, new GreenfootImage("There's no finish or player", 40, Color.WHITE, null)), world.getWidth()/2, world.getHeight()/2);
             return false;
         }
         return true;

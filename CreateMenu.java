@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CreateMenu here.
+ * The menu that brings you to a place where you can play and create your own levels
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Felix Zhao
+ * @version 1/19/2023
  */
 public class CreateMenu extends World
 {
@@ -22,5 +22,6 @@ public class CreateMenu extends World
         addObject(text, getWidth()/2, 60);
         addObject(playButton, getWidth()/2, getHeight()/2+75);
         addObject(createButton, getWidth()/2, getHeight()/2+150);
+        addObject(new TravelButton("title", 132, 48, "images/ui/buttons/back_to_level", 3), 75, 350);
     }
 }
