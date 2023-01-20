@@ -22,7 +22,7 @@ public class Key extends PushBlock
         TileObject block = world.getBlockAt(x+dx, y+dy);
         
         
-        if (block instanceof Door) {
+        if (block instanceof Door || block instanceof StrongDoor) {
             soundEffect.play();
             world.removeBlock(x, y);
             world.removeBlock(x+dx, y+dy);
